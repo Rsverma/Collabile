@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collabile.API", "Collabile.API\Collabile.API.csproj", "{AA5F5986-8C37-4C55-B847-C5ED736CA992}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collabile.Api", "Collabile.API\Collabile.Api.csproj", "{AA5F5986-8C37-4C55-B847-C5ED736CA992}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collabile.Web", "Collabile.Web\Collabile.Web.csproj", "{C1A64909-7688-44F9-A82C-3C864CC1C7C0}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Collabile.Data", "Collabile.Data\Collabile.Data.sqlproj", "{9D3BFDBE-2F7A-4186-9D89-36A919B8AD3E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ant test", "anttest\ant test.csproj", "{C30D5786-EA46-43A1-BEA6-B856AECD09CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collabile.Shared", "Collabile.Shared\Collabile.Shared.csproj", "{04B2F457-BABC-4814-BF79-ED5E288F4960}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{C30D5786-EA46-43A1-BEA6-B856AECD09CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C30D5786-EA46-43A1-BEA6-B856AECD09CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C30D5786-EA46-43A1-BEA6-B856AECD09CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04B2F457-BABC-4814-BF79-ED5E288F4960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04B2F457-BABC-4814-BF79-ED5E288F4960}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04B2F457-BABC-4814-BF79-ED5E288F4960}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04B2F457-BABC-4814-BF79-ED5E288F4960}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

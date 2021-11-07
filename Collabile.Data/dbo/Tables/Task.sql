@@ -1,0 +1,14 @@
+﻿CREATE TABLE [dbo].[Task]
+(
+	
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[Title] NVARCHAR(500) NOT NULL,
+	[Description] NVARCHAR(MAX) NOT NULL,
+	[State] INT NOT NULL,
+	[EstimatedEffort] DECIMAL NOT NULL,
+	[StartDate] DATETIME2 NOT NULL,
+	[DueDate] DATETIME2 NOT NULL,
+	[CreateDate] DATETIME2 NOT NULL,
+	[Assignee] INT NOT NULL,
+	[Reporter] INT NOT NULL
+)

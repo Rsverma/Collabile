@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Collabile.API
+namespace Collabile.Api
 {
     public class Program
     {

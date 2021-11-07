@@ -56,5 +56,26 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="dbo" />
+    <Folder Include="PublishLocations" />
+    <Folder Include="dbo\StoredProdedures" />
+    <Folder Include="dbo\Tables" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\User.sql" />
+    <Build Include="dbo\Tables\Task.sql" />
+    <Build Include="dbo\StoredProdedures\spUser_Delete.sql" />
+    <Build Include="dbo\StoredProdedures\spUser_GetAll.sql" />
+    <Build Include="dbo\StoredProdedures\spUser_Insert.sql" />
+    <Build Include="dbo\StoredProdedures\spUser_Update.sql" />
+    <Build Include="dbo\StoredProdedures\spUserLookup.sql" />
+    <Build Include="dbo\StoredProdedures\spTask_GetAll.sql" />
+    <Build Include="dbo\StoredProdedures\spTask_Insert.sql" />
+    <Build Include="dbo\StoredProdedures\spTask_Update.sql" />
+    <Build Include="dbo\StoredProdedures\spTaskLookup.sql" />
+    <Build Include="dbo\StoredProdedures\spTask_Delete.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PublishLocations\Collabile.publish.xml" />
   </ItemGroup>
 </Project>
