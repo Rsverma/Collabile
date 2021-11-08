@@ -74,6 +74,23 @@
     <Build Include="dbo\StoredProdedures\spTask_Update.sql" />
     <Build Include="dbo\StoredProdedures\spTaskLookup.sql" />
     <Build Include="dbo\StoredProdedures\spTask_Delete.sql" />
+    <Build Include="dbo\Tables\Project.sql" />
+    <Build Include="dbo\Tables\Team.sql" />
+    <Build Include="dbo\Tables\Story.sql" />
+    <Build Include="dbo\Tables\Epic.sql" />
+    <Build Include="dbo\Tables\Feature.sql" />
+    <Build Include="dbo\Tables\Release.sql" />
+    <Build Include="dbo\Tables\Sprint.sql" />
+    <Build Include="dbo\Tables\Tag.sql" />
+    <Build Include="dbo\Tables\WorkLog.sql" />
+    <Build Include="dbo\Tables\Comment.sql" />
+    <Build Include="dbo\Tables\Attachment.sql" />
+    <Build Include="dbo\Tables\StoryLink.sql" />
+    <Build Include="dbo\Tables\TeamMember.sql" />
+    <Build Include="dbo\Tables\ProjectShareholder.sql" />
+    <Build Include="dbo\Tables\TagIssueMapping.sql" />
+    <Build Include="dbo\Tables\BusinessValue.sql" />
+    <Build Include="dbo\Tables\ProjectArea.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishLocations\Collabile.publish.xml" />

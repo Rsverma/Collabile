@@ -1,0 +1,4 @@
+﻿CREATE TABLE [dbo].[ProjectArea]
+(
+	[Name] NVARCHAR(20) NOT NULL PRIMARY KEY
+)
