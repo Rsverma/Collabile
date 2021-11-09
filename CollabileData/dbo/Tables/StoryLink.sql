@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[StoryLink]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[Story1] INT NOT NULL,
+	[Story2] INT NOT NULL,
+	CONSTRAINT FK_Story1_StoryLink FOREIGN KEY ([Story1]) REFERENCES [Story] ([ID]),
+	CONSTRAINT FK_Story2_StoryLink FOREIGN KEY ([Story2]) REFERENCES [Story] (ID)
+)

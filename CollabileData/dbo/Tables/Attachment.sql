@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Attachment]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[Issue] INT NOT NULL,
+	[IssueType] INT NOT NULL,
+	[AttachedAt] DATETIME2 NOT NULL,
+	[Path] NVARCHAR(256) NOT NULL
+)
