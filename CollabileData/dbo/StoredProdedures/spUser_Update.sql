@@ -9,6 +9,6 @@ AS
 	Update [User]
 	SET UserName=@UserName,
 	[Password]=@Password,
-	[Role]=@Role
+	[UserRole]=@Role
 	WHERE Id=@Id
 Return 0

@@ -1,11 +1,12 @@
 ﻿@namespace Collabile.Web
+@using Collabile.Web.Components
 @inherits LayoutComponentBase
 
 <AntDesign.ProLayout.BasicLayout 
     Logo="@("https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg")"
     MenuData="_menuData">
     <RightContentRender>
-        <Collabile.Web.Components.RightContent />
+        <RightContent />
     </RightContentRender>
     <ChildContent>
         @Body

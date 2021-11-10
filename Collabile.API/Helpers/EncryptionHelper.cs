@@ -17,7 +17,7 @@ namespace Collabile.Api.Helpers
             if (!string.IsNullOrEmpty(password))
             {
                 byte[] salt;
-                new RNGCryptoServiceProvider().GetBytes(salt = new byte[BYTECOUNT]);
+                RandomNumberGenerator.Create().GetBytes(salt = new byte[BYTECOUNT]);
 
                 var pbkdf2 = new Rfc2898DeriveBytes(password, salt, ITERATIONCOUNT);
                 byte[] hash = pbkdf2.GetBytes(BYTECOUNT);

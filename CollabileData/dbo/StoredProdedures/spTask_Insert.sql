@@ -17,6 +17,6 @@ BEGIN
 		            [StartDate],[DueDate],[CreateDate],[Assignee],[Reporter])
                     Values (@Title, @Description, @State, @EstimatedEffort, @StartDate,
                             @DueDate, @CreateDate, @Assignee, @Reporter)
-        Select @@IDENTITY;
+        Select @@IdENTITY;
     END
 END
