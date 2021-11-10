@@ -1,11 +1,10 @@
 using Collabile.Api.DataAccess;
 using Collabile.Api.Helpers;
+using Collabile.Api.Models;
 using Collabile.Api.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -37,6 +36,8 @@ namespace Collabile.Api
 
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
+
+
 
             //Personal Services
             services.AddSingleton<IUserService, UserService>()

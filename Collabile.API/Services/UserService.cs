@@ -1,6 +1,7 @@
 ﻿using Collabile.Api.DataAccess;
-using Collabile.Shared.Entities;
 using Collabile.Api.Helpers;
+using Collabile.Api.Models;
+using Collabile.Shared.Entities;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -24,7 +25,7 @@ namespace Collabile.Api.Services
 
         public User Authenticate(string username, string password)
         {
-            List<User> users = _sql.LoadData<User, dynamic>("dbo.spUserLookup", new { username }, "CollabileData");
+            List<User> users = _sql.LoadData<User, dynamic>("dbo.spUserLookup", new { username });
 
             // return null if user not found
             if (users == null || users.Count != 1 || !EncryptionHelper.Validate(password, users[0].Password))
@@ -45,8 +46,8 @@ namespace Collabile.Api.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.Id.ToString()),
-                    new Claim(ClaimTypes.Role, user.Role)
+                    new Claim(ClaimTypes.Name, user.Username),
+                    new Claim(ClaimTypes.Role, user.UserRole)
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -57,7 +58,7 @@ namespace Collabile.Api.Services
 
         public IEnumerable<User> GetAll()
         {
-            var users = _sql.LoadData<User, dynamic>("dbo.spUser_GetAll", new { }, "CollabileData");
+            var users = _sql.LoadData<User, dynamic>("dbo.spUser_GetAll", new { });
             return users.WithoutPasswords();
         }
 
@@ -67,13 +68,11 @@ namespace Collabile.Api.Services
             if (!string.IsNullOrEmpty(encrypted) || !string.IsNullOrEmpty(user.Username))
             {
                 user.Password = encrypted;
-                int userId = _sql.SaveDataScalar("dbo.spUser_Insert", user, "CollabileData");
-                if (userId > 0)
+                int count = _sql.SaveDataScalar("dbo.spUser_Insert", user);
+                if (count > 0)
                 {
-                    user.Id = userId;
-                    user.Password = string.Empty;
                     UpdateUserToken(user);
-                    return user;
+                    return user.WithoutPassword();
                 }
             }
             return null;
@@ -84,13 +83,13 @@ namespace Collabile.Api.Services
             user.Password = EncryptionHelper.Encrypt(user.Password);
             if (!string.IsNullOrEmpty(user.Password) || !string.IsNullOrEmpty(user.Username))
             {
-                _ = _sql.SaveData("dbo.spUser_Update", user, "CollabileData");
+                _ = _sql.SaveData("dbo.spUser_Update", user);
             }
         }
 
-        public void DeleteUser(int userId)
+        public void DeleteUser(string username)
         {
-            _ = _sql.SaveData("dbo.spUser_Delete", new { Id = userId }, "CollabileData");
+            _ = _sql.SaveData("dbo.spUser_Delete", new { Username = username });
         }
     }
 }

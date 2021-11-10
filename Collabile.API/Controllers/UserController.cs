@@ -4,6 +4,8 @@ using Collabile.Shared;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Collabile.Api.Models;
+using Collabile.Api.Helpers;
 
 namespace Collabile.Api.Controllers
 {
@@ -19,7 +21,7 @@ namespace Collabile.Api.Controllers
             _userService = userService;
         }
 
-        [Authorize(Roles = Role.Admin)]
+        [AuthorizeRoles(Role.Admin)]
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -27,7 +29,7 @@ namespace Collabile.Api.Controllers
             return Ok(users);
         }
 
-        [Authorize(Roles = Role.Admin)]
+        [AuthorizeRoles(Role.Admin)]
         [HttpPost]
         public IActionResult Post(User user)
         {
@@ -40,9 +42,9 @@ namespace Collabile.Api.Controllers
         [HttpPut]
         public IActionResult Put(User user)
         {
-            int userId = int.Parse(User.FindFirstValue(ClaimTypes.Name));
+            string username = User.FindFirstValue(ClaimTypes.Name);
             string role = User.FindFirstValue(ClaimTypes.Role);
-            if (role == Role.Admin || user.Id == userId)
+            if (role == Role.Admin.ToString() || user.Username == username)
             {
                 _userService.UpdateUser(user);
                 return Ok();
@@ -52,13 +54,13 @@ namespace Collabile.Api.Controllers
 
         [Route("{userId}")]
         [HttpDelete]
-        public IActionResult Delete(int userId)
+        public IActionResult Delete(string username)
         {
-            int currentUserId = int.Parse(User.FindFirstValue(ClaimTypes.Name));
+            string currentUsername = User.FindFirstValue(ClaimTypes.Name);
             string role = User.FindFirstValue(ClaimTypes.Role);
-            if (role == Role.Admin || userId == currentUserId)
+            if (role == Role.Admin.ToString() || username == currentUsername)
             {
-                _userService.DeleteUser(userId);
+                _userService.DeleteUser(username);
                 return Ok();
             }
             return BadRequest("Authorization issue");

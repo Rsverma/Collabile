@@ -1,4 +1,4 @@
-﻿using Collabile.Shared.Entities;
+﻿using Collabile.Api.Models;
 using System.Collections.Generic;
 using System.Linq;
 

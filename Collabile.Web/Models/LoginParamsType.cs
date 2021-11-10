@@ -4,7 +4,7 @@ namespace Collabile.Web.Models
 {
     public class LoginParamsType
     {
-        [Required] public string UserName { get; set; }
+        [Required] public string Username { get; set; }
 
         [Required] public string Password { get; set; }
 

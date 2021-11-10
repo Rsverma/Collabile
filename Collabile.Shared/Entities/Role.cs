@@ -1,8 +1,7 @@
 ﻿namespace Collabile.Shared.Entities
 {
-    public static class Role
+    public enum Role
     {
-        public const string Admin = "Admin";
-        public const string User = "User";
+        User, Admin
     }
 }

@@ -7,9 +7,9 @@
 AS
 BEGIN
 	SET NOCOUNT ON;
-	IF NOT(EXISTS(SELECT * FROM [User] WHERE UserName = @Username))
+	IF NOT(EXISTS(SELECT * FROM [User] WHERE Username = @Username))
     BEGIN
-        INSERT INTO [User] (UserName,[Password],[UserRole])
+        INSERT INTO [User] (Username,[Password],[UserRole])
                     Values (@Username, @Password, @Role)
         Select @@IdENTITY;
     END

@@ -1,4 +1,5 @@
 ﻿using Collabile.Api.DataAccess;
+using Collabile.Api.Models;
 using Collabile.Shared.Entities;
 using System.Collections.Generic;
 
@@ -15,23 +16,23 @@ namespace Collabile.Api.Services
 
         public void DeleteTask(int taskId, int userId)
         {
-            _ = _sql.SaveData("dbo.spTask_Delete", new { Id = taskId, userId }, "CollabileData");
+            _ = _sql.SaveData("dbo.spTask_Delete", new { Id = taskId, userId });
         }
 
         public List<Task> GetAllTasks(int userId)
         {
-            var tasks = _sql.LoadData<Task, dynamic>("dbo.spTask_GetAll", new { userId }, "CollabileData");
+            var tasks = _sql.LoadData<Task, dynamic>("dbo.spTask_GetAll", new { userId });
             return tasks;
         }
 
         public int SaveTask(Task task)
         {
-            return _sql.SaveDataScalar("dbo.spTask_Insert", task, "CollabileData");
+            return _sql.SaveDataScalar("dbo.spTask_Insert", task);
         }
 
         public void UpdateTask(Task task)
         {
-            _ = _sql.SaveData("dbo.spTask_Update", task, "CollabileData");
+            _ = _sql.SaveData("dbo.spTask_Update", task);
         }
     }
 }

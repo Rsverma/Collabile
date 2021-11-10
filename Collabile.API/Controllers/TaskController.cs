@@ -1,4 +1,5 @@
-﻿using Collabile.Api.Services;
+﻿using Collabile.Api.Models;
+using Collabile.Api.Services;
 using Collabile.Shared.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -40,7 +41,7 @@ namespace Collabile.Api.Controllers
         {
             int userId = int.Parse(User.FindFirstValue(ClaimTypes.Name));
             string role = User.FindFirstValue(ClaimTypes.Role);
-            if (role == Role.Admin || task.Reporter == userId)
+            if (role == Role.Admin.ToString() || task.Reporter == userId)
             {
                 task.Reporter = userId;
                 _taskService.UpdateTask(task);

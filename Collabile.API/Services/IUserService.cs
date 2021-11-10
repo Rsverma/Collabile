@@ -1,4 +1,4 @@
-﻿using Collabile.Shared.Entities;
+﻿using Collabile.Api.Models;
 using System.Collections.Generic;
 
 namespace Collabile.Api.Services
@@ -11,7 +11,7 @@ namespace Collabile.Api.Services
 
         void UpdateUser(User user);
 
-        void DeleteUser(int userId);
+        void DeleteUser(string username);
 
         IEnumerable<User> GetAll();
     }

@@ -6,22 +6,20 @@ namespace Collabile.Api.DataAccess
     {
         void CommitTransaction();
 
-        void Dispose();
-
-        List<T> LoadData<T, U>(string storedProcedure, U parameters, string connectionStringName);
+        List<T> LoadData<T, U>(string storedProcedure, U parameters);
 
         List<T> LoadDataInTransaction<T, U>(string storedProcedure, U parameters);
 
         void RollbackTransaction();
 
-        int SaveData<T>(string storedProcedure, T parameters, string connectionStringName);
+        int SaveData<T>(string storedProcedure, T parameters);
 
         int SaveDataInTransaction<T>(string storedProcedure, T parameters);
 
-        int SaveDataScalar<T>(string storedProcedure, T parameters, string connectionStringName);
+        int SaveDataScalar<T>(string storedProcedure, T parameters);
 
         int SaveDataScalarInTransaction<T>(string storedProcedure, T parameters);
 
-        void StartTransaction(string connectionStringName);
+        void StartTransaction();
     }
 }

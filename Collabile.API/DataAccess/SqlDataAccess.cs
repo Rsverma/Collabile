@@ -11,55 +11,41 @@ namespace Collabile.Api.DataAccess
 {
     public class SqlDataAccess : IDisposable, ISqlDataAccess
     {
+        private IDbConnection _connection;
+        private IDbTransaction _transaction;
+        private readonly string connectionString;
+        private readonly ILogger<SqlDataAccess> _logger;
+
         public SqlDataAccess(IConfiguration config, ILogger<SqlDataAccess> logger)
         {
-            _config = config;
+            connectionString = config.GetConnectionString("CollabileData");
             _logger = logger;
         }
 
-        internal string GetConnectionString(string name)
+        public List<T> LoadData<T, U>(string storedProcedure, U parameters)
         {
-            return _config.GetConnectionString(name);
-        }
-
-        public List<T> LoadData<T, U>(string storedProcedure, U parameters, string connectionStringName)
-        {
-            string connectionString = GetConnectionString(connectionStringName);
-
             using IDbConnection connection = new SqlConnection(connectionString);
             List<T> rows = connection.Query<T>(storedProcedure, parameters,
                 commandType: CommandType.StoredProcedure).ToList();
             return rows;
         }
 
-        public int SaveData<T>(string storedProcedure, T parameters, string connectionStringName)
+        public int SaveData<T>(string storedProcedure, T parameters)
         {
-            string connectionString = GetConnectionString(connectionStringName);
-
             using IDbConnection connection = new SqlConnection(connectionString);
             return connection.Execute(storedProcedure, parameters,
                 commandType: CommandType.StoredProcedure);
         }
 
-        public int SaveDataScalar<T>(string storedProcedure, T parameters, string connectionStringName)
+        public int SaveDataScalar<T>(string storedProcedure, T parameters)
         {
-            string connectionString = GetConnectionString(connectionStringName);
-
-
             using IDbConnection connection = new SqlConnection(connectionString);
             return connection.ExecuteScalar<int>(storedProcedure, parameters,
                 commandType: CommandType.StoredProcedure);
         }
 
-        private IDbConnection _connection;
-        private IDbTransaction _transaction;
-        private readonly IConfiguration _config;
-        private readonly ILogger<SqlDataAccess> _logger;
-
-        public void StartTransaction(string connectionStringName)
+        public void StartTransaction()
         {
-            string connectionString = GetConnectionString(connectionStringName);
-
             _connection = new SqlConnection(connectionString);
             _connection.Open();
             _transaction = _connection.BeginTransaction();
@@ -110,5 +96,6 @@ namespace Collabile.Api.DataAccess
                 _logger.LogError(ex, "Sql data access dispose failed");
             }
         }
+
     }
 }

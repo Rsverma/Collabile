@@ -1,10 +1,10 @@
 ﻿CREATE PROCEDURE [dbo].[spUserLookup]
-	@UserName NVARCHAR(50)
+	@Username NVARCHAR(50)
 AS
 Begin
 	set nocount on;
 
-	SELECT Id,UserName,[Password],[UserRole]
+	SELECT Username,[Password],[UserRole]
 	from [dbo].[User]
-	where UserName = @UserName
+	where Username = @Username
 End

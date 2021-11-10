@@ -7,11 +7,11 @@
 	[State] INT NOT NULL,
 	[ParentStory] INT NULL,
 	[EstimatedEffort] DECIMAL NOT NULL,
-	[StartDate] DATETIME2 NOT NULL,
-	[DueDate] DATETIME2 NOT NULL,
+	[StartDate] DATETIME2 NULL,
+	[DueDate] DATETIME2 NULL,
 	[CreateDate] DATETIME2 NOT NULL,
-	[Assignee] INT NULL,
-	[Reporter] INT NOT NULL,
-	CONSTRAINT FK_User_Task_Assignee FOREIGN KEY (Assignee) REFERENCES [User] (Id),
-	CONSTRAINT FK_User_Task_Reporter FOREIGN KEY (Reporter) REFERENCES [User] (Id)
+	[Assignee] NVARCHAR(50 )NULL,
+	[Reporter] NVARCHAR(50) NOT NULL,
+	CONSTRAINT FK_User_Task_Assignee FOREIGN KEY (Assignee) REFERENCES [User] (Username),
+	CONSTRAINT FK_User_Task_Reporter FOREIGN KEY (Reporter) REFERENCES [User] (Username)
 )

@@ -3,8 +3,8 @@
 	[Id] INT NOT NULL PRIMARY KEY IdENTITY,
 	[Issue] INT NOT NULL,
 	[IssueType] INT NOT NULL,
-	[User] INT NOT NULL,
+	[User] NVARCHAR(50) NOT NULL,
 	[CreatedAt] DATETIME2 NOT NULL,
 	[Description] NVARCHAR(MAX) NOT NULL,
-	CONSTRAINT FK_User_Comment FOREIGN KEY ([User]) REFERENCES [User] (Id)
+	CONSTRAINT FK_User_Comment FOREIGN KEY ([User]) REFERENCES [User] (Username)
 )

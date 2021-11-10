@@ -36,7 +36,7 @@ namespace Collabile.Api.Controllers
             {
                 Username = userDetails.Username,
                 Password = userDetails.Password,
-                Role = Role.User
+                UserRole = Role.User.ToString()
             };
             User user = _userService.CreateUser(newUser);
 

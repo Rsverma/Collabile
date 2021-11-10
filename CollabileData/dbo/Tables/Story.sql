@@ -10,11 +10,10 @@
 	[Priority] INT NOT NULL,
 	[AcceptanceCriteria] NVARCHAR(MAX) NOT NULL,
 	[CreateDate] DATETIME2 NOT NULL,
-	[Assignee] INT NOT NULL,
-	[Reporter] INT NOT NULL,
-	CONSTRAINT FK_User_Story_Assignee FOREIGN KEY (Assignee) REFERENCES [User] (Id)
-        ON UPDATE CASCADE,
-	CONSTRAINT FK_User_Story_Reporter FOREIGN KEY (Reporter) REFERENCES [User] (Id)
-        ON UPDATE CASCADE
+	[Assignee] NVARCHAR(50) NOT NULL,
+	[Reporter] NVARCHAR(50) NOT NULL,
+	CONSTRAINT FK_User_Story_Assignee FOREIGN KEY (Assignee) REFERENCES [User] (Username),
+	CONSTRAINT FK_User_Story_Reporter FOREIGN KEY (Reporter) REFERENCES [User] (Username),
+	CONSTRAINT FK_Sprint_Story FOREIGN KEY (Sprint) REFERENCES Sprint (Id)
 )
 

@@ -6,7 +6,7 @@
 	[Description] NVARCHAR(MAX) NOT NULL,
 	[StartDate] DATETIME2 NOT NULL,
 	[SprintDays] INT NOT NULL,
-	[Owner] INT NOT NULL,
-	CONSTRAINT FK_User_Project_Owner FOREIGN KEY ([Owner]) REFERENCES [User] (Id)
+	[Owner] NVARCHAR(50) NOT NULL,
+	CONSTRAINT FK_User_Project_Owner FOREIGN KEY ([Owner]) REFERENCES [User] (Username)
 
 )
