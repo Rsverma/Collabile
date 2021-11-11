@@ -1,8 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[spUser_GetAll]
 AS
 Begin
-	SELECT Username,[Password],[UserRole]
-	FROM [dbo].[User]
+	SELECT [Username],[UserRole]
+	from [dbo].[User]
 RETURN 0
 End
 

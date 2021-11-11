@@ -1,16 +1,14 @@
 ﻿CREATE PROCEDURE [dbo].[spUser_Insert]
-        @Id INT,
         @Username NVARCHAR(50),
         @Password NVARCHAR(128),
-        @Token NVARCHAR(256),
-        @Role NVARCHAR(50)
+        @UserRole NVARCHAR(10)
 AS
 BEGIN
 	SET NOCOUNT ON;
 	IF NOT(EXISTS(SELECT * FROM [User] WHERE Username = @Username))
     BEGIN
         INSERT INTO [User] (Username,[Password],[UserRole])
-                    Values (@Username, @Password, @Role)
+                    Values (@Username, @Password, @UserRole)
         Select @@IdENTITY;
     END
     ELSE

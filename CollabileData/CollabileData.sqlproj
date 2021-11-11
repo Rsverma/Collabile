@@ -91,6 +91,7 @@
     <Build Include="dbo\Tables\TagIssueMapping.sql" />
     <Build Include="dbo\Tables\BusinessValue.sql" />
     <Build Include="dbo\Tables\ProjectArea.sql" />
+    <Build Include="dbo\StoredProdedures\spUser_GetById.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishLocations\Collabile.publish.xml" />

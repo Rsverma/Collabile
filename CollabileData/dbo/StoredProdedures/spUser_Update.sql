@@ -1,12 +1,15 @@
 ﻿CREATE PROCEDURE [dbo].[spUser_Update]
 	@Username NVARCHAR(50),
-	@Password NVARCHAR(128),
-    @Token NVARCHAR(256),
-	@Role NVARCHAR(50)
+	@Password NVARCHAR(256),
+	@UserRole NVARCHAR(10)
 
 AS
+	IF @Password IS NOT NULL AND @Password <>''
+		Update [User]
+		SET [Password]=@Password
+		WHERE Username=@Username
+
 	Update [User]
-	SET [Password]=@Password,
-	[UserRole]=@Role
+	SET [UserRole]=@UserRole
 	WHERE Username=@Username
 Return 0

@@ -25,16 +25,15 @@ namespace Collabile.Api.Services
 
         public User Authenticate(string username, string password)
         {
-            List<User> users = _sql.LoadData<User, dynamic>("dbo.spUserLookup", new { username });
+            string passHash = _sql.LoadSingle<string, dynamic>("dbo.spUserLookup", new { username });
 
             // return null if user not found
-            if (users == null || users.Count != 1 || !EncryptionHelper.Validate(password, users[0].Password))
+            if (string.IsNullOrEmpty(passHash) || !EncryptionHelper.Validate(password, passHash))
                 return null;
-            User user = users[0];
-            user.Password = string.Empty;
+            User user = _sql.LoadSingle<User, dynamic>("dbo.spUser_GetById", new { username });
             UpdateUserToken(user);
 
-            return user;
+            return user.WithoutPassword();
         }
 
         private void UpdateUserToken(User user)
@@ -67,8 +66,7 @@ namespace Collabile.Api.Services
             string encrypted = EncryptionHelper.Encrypt(user.Password);
             if (!string.IsNullOrEmpty(encrypted) || !string.IsNullOrEmpty(user.Username))
             {
-                user.Password = encrypted;
-                int count = _sql.SaveDataScalar("dbo.spUser_Insert", user);
+                int count = _sql.SaveDataScalar("dbo.spUser_Insert", new { user.Username, Password = encrypted, user.UserRole });
                 if (count > 0)
                 {
                     UpdateUserToken(user);
@@ -80,10 +78,10 @@ namespace Collabile.Api.Services
 
         public void UpdateUser(User user)
         {
-            user.Password = EncryptionHelper.Encrypt(user.Password);
-            if (!string.IsNullOrEmpty(user.Password) || !string.IsNullOrEmpty(user.Username))
+            string encrypted = EncryptionHelper.Encrypt(user.Password);
+            if (!string.IsNullOrEmpty(user.Username))
             {
-                _ = _sql.SaveData("dbo.spUser_Update", user);
+                _ = _sql.SaveData("dbo.spUser_Update", new { user.Username, Password = encrypted, user.UserRole });
             }
         }
 

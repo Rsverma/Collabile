@@ -17,8 +17,6 @@ namespace Collabile.Api.Models
 
         public string UserRole { get; set; }
 
-        public DateTime CreatedDate { get; set; }
-
         public List<string> Projects { get; set; }
 
         public List<TeamMember> Teams { get; set; }
