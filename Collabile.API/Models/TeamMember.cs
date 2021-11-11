@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using Collabile.Shared.Entities;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Collabile.Api.Models
@@ -10,6 +8,6 @@ namespace Collabile.Api.Models
     {
         public string Team { get; set; }
         public string Member { get; set; }
-        public int TeamRole { get; set; }
+        public TeamRole TeamRole { get; set; }
     }
 }

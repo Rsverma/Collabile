@@ -35,6 +35,14 @@ public class SqlDataAccess : ISqlDataAccess
         return item;
     }
 
+    public SqlMapper.GridReader LoadMultiple<U>(string storedProcedure, U parameters)
+    {
+        using IDbConnection connection = new SqlConnection(connectionString);
+        SqlMapper.GridReader reader = connection.QueryMultiple(storedProcedure, parameters,
+            commandType: CommandType.StoredProcedure);
+        return reader;
+    }
+
     public int SaveData<T>(string storedProcedure, T parameters)
     {
         using IDbConnection connection = new SqlConnection(connectionString);

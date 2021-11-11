@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Dapper;
 
 namespace Collabile.Api.Services
 {
@@ -30,7 +31,13 @@ namespace Collabile.Api.Services
             // return null if user not found
             if (string.IsNullOrEmpty(passHash) || !EncryptionHelper.Validate(password, passHash))
                 return null;
-            User user = _sql.LoadSingle<User, dynamic>("dbo.spUser_GetById", new { username });
+            SqlMapper.GridReader reader = _sql.LoadMultiple<dynamic>("dbo.spUser_GetById", new { username });
+
+            IEnumerable<User> users = reader.Read<User>();
+            User user  = users.GetEnumerator().Current;
+            user.Projects = reader.Read<string>().AsList();
+            user.Teams = reader.Read<TeamMember>().AsList();
+
             UpdateUserToken(user);
 
             return user.WithoutPassword();

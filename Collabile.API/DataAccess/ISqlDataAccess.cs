@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Dapper;
+using System.Collections.Generic;
 using System.Data;
 
 namespace Collabile.Api.DataAccess
@@ -10,6 +11,8 @@ namespace Collabile.Api.DataAccess
         List<T> LoadData<T, U>(string storedProcedure, U parameters);
 
         T LoadSingle<T, U>(string storedProcedure, U parameters);
+
+        SqlMapper.GridReader LoadMultiple<U>(string storedProcedure, U parameters);
 
         List<T> LoadDataInTransaction<T, U>(string storedProcedure, U parameters, IDbConnection connection, IDbTransaction transaction);
 

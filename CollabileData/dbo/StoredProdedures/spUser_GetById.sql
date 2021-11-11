@@ -3,8 +3,14 @@
 AS
 Begin
 	set nocount on;
-
+	
 	SELECT [Username],[UserRole]
-	from [dbo].[User]
-	where Username = @Username
+	from [dbo].[User] where Username = @Username
+	
+	SELECT [Key]
+	from [dbo].[Project] where [Owner] = @Username
+
+	SELECT [Team],[Member],[TeamRole]
+	from [dbo].[TeamMember] where Member = @Username
+
 End
