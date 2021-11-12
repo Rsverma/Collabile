@@ -20,8 +20,5 @@ namespace Collabile.Api.Models
         public List<string> Projects { get; set; }
 
         public List<TeamMember> Teams { get; set; }
-
-        [NotMapped]
-        public string Token { get; set; }
     }
 }

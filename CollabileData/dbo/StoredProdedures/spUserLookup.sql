@@ -4,7 +4,7 @@ AS
 Begin
 	set nocount on;
 
-	SELECT [Password]
+	SELECT [Password], [UserRole]
 	from [dbo].[User]
 	where Username = @Username
 End

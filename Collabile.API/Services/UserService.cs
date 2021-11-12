@@ -24,26 +24,25 @@ namespace Collabile.Api.Services
             _sql = sql;
         }
 
-        public User Authenticate(string username, string password)
+        public AuthenticatedUser Authenticate(string username, string password)
         {
-            string passHash = _sql.LoadSingle<string, dynamic>("dbo.spUserLookup", new { username });
+
+            UserCred passRole = _sql.LoadSingle<UserCred, dynamic>("dbo.spUserLookup", new { username });
 
             // return null if user not found
-            if (string.IsNullOrEmpty(passHash) || !EncryptionHelper.Validate(password, passHash))
+            if (string.IsNullOrEmpty(passRole.Password) || !EncryptionHelper.Validate(password, passRole.Password))
                 return null;
-            SqlMapper.GridReader reader = _sql.LoadMultiple<dynamic>("dbo.spUser_GetById", new { username });
+            //SqlMapper.GridReader reader = _sql.LoadMultiple<dynamic>("dbo.spUser_GetById", new { username });
 
-            IEnumerable<User> users = reader.Read<User>();
-            User user  = users.GetEnumerator().Current;
-            user.Projects = reader.Read<string>().AsList();
-            user.Teams = reader.Read<TeamMember>().AsList();
+            //IEnumerable<User> users = reader.Read<User>();
+            //User user  = users.GetEnumerator().Current;
+            //user.Projects = reader.Read<string>().AsList();
+            //user.Teams = reader.Read<TeamMember>().AsList();
 
-            UpdateUserToken(user);
-
-            return user.WithoutPassword();
+            return new AuthenticatedUser(username, GetUserToken(username, passRole.UserRole));
         }
 
-        private void UpdateUserToken(User user)
+        private string GetUserToken(string username, string role)
         {
             // authentication successful so generate jwt token
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -52,14 +51,14 @@ namespace Collabile.Api.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.Username),
-                    new Claim(ClaimTypes.Role, user.UserRole)
+                    new Claim(ClaimTypes.Name, username),
+                    new Claim(ClaimTypes.Role, role)
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            user.Token = tokenHandler.WriteToken(token);
+            return tokenHandler.WriteToken(token);
         }
 
         public IEnumerable<User> GetAll()
@@ -68,19 +67,15 @@ namespace Collabile.Api.Services
             return users.WithoutPasswords();
         }
 
-        public User CreateUser(User user)
+        public bool CreateUser(User user)
         {
             string encrypted = EncryptionHelper.Encrypt(user.Password);
             if (!string.IsNullOrEmpty(encrypted) || !string.IsNullOrEmpty(user.Username))
             {
-                int count = _sql.SaveDataScalar("dbo.spUser_Insert", new { user.Username, Password = encrypted, user.UserRole });
-                if (count > 0)
-                {
-                    UpdateUserToken(user);
-                    return user.WithoutPassword();
-                }
+                int count = _sql.SaveData("dbo.spUser_Insert", new { user.Username, Password = encrypted, user.UserRole });
+                return count > 0;
             }
-            return null;
+            return false;
         }
 
         public void UpdateUser(User user)

@@ -33,10 +33,9 @@ namespace Collabile.Api.Controllers
         [HttpPost]
         public IActionResult Post(User user)
         {
-            user = _userService.CreateUser(user);
-            if (user == null)
-                return BadRequest();
-            return Ok(user);
+            if (_userService.CreateUser(user))
+                return Ok();
+            return BadRequest();
         }
 
         [HttpPut]

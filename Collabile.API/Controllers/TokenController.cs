@@ -38,12 +38,11 @@ namespace Collabile.Api.Controllers
                 Password = userDetails.Password,
                 UserRole = Role.User.ToString()
             };
-            User user = _userService.CreateUser(newUser);
+            bool success = _userService.CreateUser(newUser);
 
-            if (user == null)
-                return BadRequest();
-
-            return Ok(user);
+            if (success)
+                return Ok();
+            return BadRequest();
         }
     }
 }

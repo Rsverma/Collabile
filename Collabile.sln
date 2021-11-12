@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collabile.Shared", "Collabi
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CollabileData", "CollabileData\CollabileData.sqlproj", "{8B4F4BBA-672F-47A5-8107-0E9565F093A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collabile.Web", "Collabile.Web\Collabile.Web.csproj", "{8FC76094-FCEF-4548-9FA9-921B74012BB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collabile.Web", "Collabile.Web\Collabile.Web.csproj", "{8FC76094-FCEF-4548-9FA9-921B74012BB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
