@@ -1,7 +1,7 @@
 ﻿using Collabile.Api.DataAccess;
 using Collabile.Api.Helpers;
 using Collabile.Api.Models;
-using Collabile.Shared.Entities;
+using Collabile.Shared.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;

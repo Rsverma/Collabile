@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Collabile.Api.Models
+namespace Collabile.Shared.Models
 {
-    public class AuthenticateModel
+    public class SignUpModel
     {
         [Required]
         public string Username { get; set; }

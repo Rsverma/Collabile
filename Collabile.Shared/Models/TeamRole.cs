@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Collabile.Shared.Entities
+namespace Collabile.Shared.Models
 {
     public enum TeamRole
     {

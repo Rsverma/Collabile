@@ -1,4 +1,4 @@
-﻿using Collabile.Shared.Entities;
+﻿using Collabile.Shared.Models;
 using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Linq;

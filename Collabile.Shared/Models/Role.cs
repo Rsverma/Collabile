@@ -1,4 +1,4 @@
-﻿namespace Collabile.Shared.Entities
+﻿namespace Collabile.Shared.Models
 {
     public enum Role
     {

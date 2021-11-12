@@ -1,4 +1,4 @@
-﻿using Collabile.Shared.Entities;
+﻿using Collabile.Shared.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Collabile.Api.Models
