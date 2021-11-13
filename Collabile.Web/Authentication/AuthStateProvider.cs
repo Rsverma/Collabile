@@ -28,10 +28,13 @@ namespace Collabile.Web.Authentication
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(scheme: "bearer", token);
 
-            return new AuthenticationState(
+            var x =  new AuthenticationState(
                 user: new ClaimsPrincipal(
                     identity: new ClaimsIdentity(
                         JwtParser.ParseClaimsFromJwt(token),authenticationType: "jwtAuthType")));
+            string y = x.User.Identity.Name;
+            var z = x.User.Claims;
+            return x;
         }
 
         public async Task NotifyUserAuthentication(string token)
