@@ -1,5 +1,5 @@
 ﻿@page "/login"
-@inject IAuthenticationService AuthService
+@inject IAuthService AuthService
 @inject NavigationManager NavManager
 <h3>Login</h3>
 
@@ -52,7 +52,7 @@
     {
         showAuthenticationError = false;
 
-        var result = AuthService.Login(model);
+        var result = await AuthService.Login(model);
 
         if (result is not null)
         {

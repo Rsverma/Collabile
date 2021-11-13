@@ -32,8 +32,10 @@ namespace Collabile.Web.Authentication
                         JwtParser.ParseClaimsFromJwt(token),authenticationType: "jwtAuthType")));
         }
 
-        public void NotifyUserAuthentication(string token)
+        public async Task NotifyUserAuthentication(string token)
         {
+
+            await _localStorage.SetItemAsync("authToken", token);
             var authenticatedUser = new ClaimsPrincipal(
                     identity: new ClaimsIdentity(
                         JwtParser.ParseClaimsFromJwt(token), authenticationType: "jwtAuthType"));
@@ -41,8 +43,9 @@ namespace Collabile.Web.Authentication
             NotifyAuthenticationStateChanged(authState);
         }
 
-        public void NotifyUserLogout()
+        public async Task NotifyUserLogout()
         {
+            await _localStorage.RemoveItemAsync("authToken");
             var authState = Task.FromResult(_anonymous);
             NotifyAuthenticationStateChanged(authState);
         }
