@@ -10,16 +10,18 @@ namespace Collabile.Web.Authentication
         private readonly HttpClient _httpClient;
         private readonly ILocalStorageService _localStorage;
         private readonly AuthenticationState _anonymous;
+        private readonly string _authTokenStorageKey;
 
-        public AuthStateProvider(HttpClient httpClient, ILocalStorageService localStorage)
+        public AuthStateProvider(HttpClient httpClient, ILocalStorageService localStorage,IConfiguration config)
         {
             _httpClient = httpClient;
             _localStorage = localStorage;
             _anonymous = new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
+            _authTokenStorageKey = config["authTokenStorageKey"];
         }
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
-            var token = await _localStorage.GetItemAsync<string>(key: "authtoken");
+            var token = await _localStorage.GetItemAsync<string>(key: _authTokenStorageKey);
 
             if (string.IsNullOrWhiteSpace(token))
                 return _anonymous;
@@ -35,7 +37,7 @@ namespace Collabile.Web.Authentication
         public async Task NotifyUserAuthentication(string token)
         {
 
-            await _localStorage.SetItemAsync("authToken", token);
+            await _localStorage.SetItemAsync(_authTokenStorageKey, token);
             var authenticatedUser = new ClaimsPrincipal(
                     identity: new ClaimsIdentity(
                         JwtParser.ParseClaimsFromJwt(token), authenticationType: "jwtAuthType"));
@@ -45,7 +47,7 @@ namespace Collabile.Web.Authentication
 
         public async Task NotifyUserLogout()
         {
-            await _localStorage.RemoveItemAsync("authToken");
+            await _localStorage.RemoveItemAsync(_authTokenStorageKey);
             var authState = Task.FromResult(_anonymous);
             NotifyAuthenticationStateChanged(authState);
         }
