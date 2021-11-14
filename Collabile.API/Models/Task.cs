@@ -1,4 +1,5 @@
-﻿using Collabile.Shared.Models;
+﻿using Collabile.Shared.Enums;
+using Collabile.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

@@ -4,7 +4,7 @@ namespace Collabile.Web.Authentication
 {
     public interface IAuthService
     {
-        Task<AuthenticatedUser> Login(AuthenticateModel userForAuthentication);
+        Task<AuthenticatedUser> Login(TokenRequest userForAuthentication);
         Task Logout();
     }
 }

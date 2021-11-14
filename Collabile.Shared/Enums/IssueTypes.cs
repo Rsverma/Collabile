@@ -1,7 +1,5 @@
-﻿namespace Collabile.Shared.Models
+﻿namespace Collabile.Shared.Enums
 {
-
-
     public enum FeatureType
     {
         Improvement,

@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Collabile.Shared.Models
 {
-    public enum TeamRole
+    public class LanguageCode
     {
-        ScrumMaster,
-        Developer,
-        Tester
+        public string DisplayName { get; set; }
+        public string Code { get; set; }
     }
 }

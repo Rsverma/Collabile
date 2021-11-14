@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Collabile.Api.Models;
 using Collabile.Api.Helpers;
+using Collabile.Shared.Constants;
 
 namespace Collabile.Api.Controllers
 {
@@ -21,7 +22,7 @@ namespace Collabile.Api.Controllers
             _userService = userService;
         }
 
-        [AuthorizeRoles(Role.Admin)]
+        [Authorize(Role.Admin)]
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -29,7 +30,7 @@ namespace Collabile.Api.Controllers
             return Ok(users);
         }
 
-        [AuthorizeRoles(Role.Admin)]
+        [Authorize(Role.Admin)]
         [HttpPost]
         public IActionResult Post(User user)
         {

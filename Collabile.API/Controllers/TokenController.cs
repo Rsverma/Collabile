@@ -1,5 +1,6 @@
 ﻿using Collabile.Api.Models;
 using Collabile.Api.Services;
+using Collabile.Shared.Constants;
 using Collabile.Shared.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,9 +20,9 @@ namespace Collabile.Api.Controllers
         }
 
         [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody] AuthenticateModel model)
+        public IActionResult Authenticate([FromBody] TokenRequest model)
         {
-            var user = _userService.Authenticate(model.Username, model.Password);
+            var user = _userService.Authenticate(model.Email, model.Password);
 
             if (user == null)
                 return BadRequest("Username or password is incorrect");
@@ -36,7 +37,7 @@ namespace Collabile.Api.Controllers
             {
                 Username = userDetails.Username,
                 Password = userDetails.Password,
-                UserRole = Role.User.ToString()
+                UserRole = Role.User
             };
             bool success = _userService.CreateUser(newUser);
 

@@ -6,9 +6,9 @@ using System.Linq;
 namespace Collabile.Api.Helpers;
 public class AuthorizeRolesAttribute : AuthorizeAttribute
 {
-    public AuthorizeRolesAttribute(params Role[] roles)
-    {
-        Roles = string.Join(",", roles.Select(x => x.ToString()));
-    }
+    //public AuthorizeRolesAttribute(params Role[] roles)
+    //{
+    //    Roles = string.Join(",", roles.Select(x => x.ToString()));
+    //}
 
 }
