@@ -33,10 +33,6 @@ namespace Collabile.Web.Extensions
         {
             _ = builder
                 .Services
-                .AddLocalization(options =>
-                {
-                    options.ResourcesPath = "Resources";
-                })
                 .AddAuthorizationCore(options =>
                 {
                     RegisterPermissionClaims(options);

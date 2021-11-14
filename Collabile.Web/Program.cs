@@ -12,12 +12,7 @@ var host = builder.Build();
 var storageService = host.Services.GetRequiredService<ClientPreferenceManager>();
 if (storageService != null)
 {
-    CultureInfo culture;
-    var preference = await storageService.GetPreference() as ClientPreference;
-    if (preference != null)
-        culture = new CultureInfo(preference.LanguageCode);
-    else
-        culture = new CultureInfo(LocalizationConstants.SupportedLanguages.FirstOrDefault()?.Code ?? "en-US");
+    CultureInfo culture = new CultureInfo("en-US");
     CultureInfo.DefaultThreadCurrentCulture = culture;
     CultureInfo.DefaultThreadCurrentUICulture = culture;
 }
