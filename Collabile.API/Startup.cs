@@ -23,29 +23,28 @@ namespace Collabile.Api
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        private readonly IConfiguration _configuration;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddCors();
+            services.AddSignalR();
             services.AddControllers();
 
-            var appSettingsSection = Configuration.GetSection("AppSettings");
-            services.Configure<AppSettings>(appSettingsSection);
+            var appSettingsSection = _configuration.GetSection("AppSettings");
+            services.Configure<AppConfiguration>(appSettingsSection);
 
 
 
-            //Personal Services
-            services.AddSingleton<IUserService, UserService>()
-                    .AddSingleton<ITaskService, TaskService>()
-                    .AddSingleton<ISqlDataAccess, SqlDataAccess>();
+            
 
             // configure jwt authentication
-            var appSettings = appSettingsSection.Get<AppSettings>();
+            var appSettings = appSettingsSection.Get<AppConfiguration>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
             services.AddAuthentication(x =>
             {

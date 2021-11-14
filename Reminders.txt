@@ -1,0 +1,7 @@
+ServiceCollectionExtensions
+	AddSerialization
+	AddDatabase
+	AddSharedInfrastructure
+
+WebAssemblyHostBuilderExtensions
+	AddExtendedAttributeManagers

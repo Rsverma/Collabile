@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.11" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
@@ -14,11 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Collabile.Api.Library\Collabile.Api.Library.csproj" />
     <ProjectReference Include="..\Collabile.Shared\Collabile.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="HelperModels\" />
   </ItemGroup>
 
 </Project>

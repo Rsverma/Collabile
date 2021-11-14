@@ -18,11 +18,11 @@ namespace Collabile.Api.Services
 {
     public class UserService : IUserService
     {
-        private readonly AppSettings _appSettings;
+        private readonly AppConfiguration _appSettings;
         private readonly ISqlDataAccess _sql;
         //private List<BlazorHeroUser>
 
-        public UserService(IOptions<AppSettings> appSettings, ISqlDataAccess sql)
+        public UserService(IOptions<AppConfiguration> appSettings, ISqlDataAccess sql)
         {
             _appSettings = appSettings.Value;
             _sql = sql;
