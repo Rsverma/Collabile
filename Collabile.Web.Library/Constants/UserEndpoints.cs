@@ -4,16 +4,16 @@ namespace Collabile.Web.Library.Constants
 {
     public static class UserEndpoints
     {
-        public static string GetAll = "api/identity/user";
+        public static string GetAll = "api/user";
 
         public static string Get(string userId)
         {
-            return $"api/identity/user/{userId}";
+            return $"api/user/{userId}";
         }
 
         public static string GetUserRoles(string userId)
         {
-            return $"api/identity/user/roles/{userId}";
+            return $"api/user/roles/{userId}";
         }
 
         public static string ExportFiltered(string searchString)
@@ -21,10 +21,10 @@ namespace Collabile.Web.Library.Constants
             return $"{Export}?searchString={searchString}";
         }
 
-        public static string Export = "api/identity/user/export";
-        public static string Register = "api/identity/user";
-        public static string ToggleUserStatus = "api/identity/user/toggle-status";
-        public static string ForgotPassword = "api/identity/user/forgot-password";
-        public static string ResetPassword = "api/identity/user/reset-password";
+        public static string Export = "api/user/export";
+        public static string Register = "api/user";
+        public static string ToggleUserStatus = "api/user/toggle-status";
+        public static string ForgotPassword = "api/user/forgot-password";
+        public static string ResetPassword = "api/user/reset-password";
     }
 }

@@ -61,7 +61,7 @@ namespace Collabile.Web.Shared
 
         protected override async Task OnInitializedAsync()
         {
-            _currentTheme = BlazorHeroTheme.DefaultTheme;
+            _currentTheme = CollabileTheme.DefaultTheme;
             _currentTheme = await _clientPreferenceManager.GetCurrentThemeAsync();
             _rightToLeft = await _clientPreferenceManager.IsRTL();
             _interceptor.RegisterEvent();
@@ -155,8 +155,8 @@ namespace Collabile.Web.Shared
         {
             bool isDarkMode = await _clientPreferenceManager.ToggleDarkModeAsync();
             _currentTheme = isDarkMode
-                ? BlazorHeroTheme.DefaultTheme
-                : BlazorHeroTheme.DarkTheme;
+                ? CollabileTheme.DefaultTheme
+                : CollabileTheme.DarkTheme;
         }
 
         public void Dispose()

@@ -2,7 +2,7 @@
 {
     public static class TokenEndpoints
     {
-        public static string Get = "api/identity/token";
-        public static string Refresh = "api/identity/token/refresh";
+        public static string Get = "api/token";
+        public static string Refresh = "api/token/refresh";
     }
 }

@@ -72,9 +72,9 @@ namespace Collabile.Web.Managers
             var preference = await GetPreference() as ClientPreference;
             if (preference != null)
             {
-                if (preference.IsDarkMode == true) return BlazorHeroTheme.DarkTheme;
+                if (preference.IsDarkMode == true) return CollabileTheme.DarkTheme;
             }
-            return BlazorHeroTheme.DefaultTheme;
+            return CollabileTheme.DefaultTheme;
         }
         public async Task<bool> IsRTL()
         {

@@ -8,7 +8,7 @@
     <MudGrid>
         <MudItem xs="12">
             <div class="d-flex justify-center">
-                <MudIcon Icon="@CustomIcons.BlazorHero" Color="Color.Primary" Size="Size.Large" ViewBox="0 0 500 500" Style="width: 100px; height: 100px;" />
+                <MudIcon Icon="@CustomIcons.Collabile" Color="Color.Primary" Size="Size.Large" ViewBox="0 0 500 500" Style="width: 100px; height: 100px;" />
             </div>
         </MudItem>
         <DataAnnotationsValidator />
@@ -41,12 +41,6 @@
         </MudItem>
         <MudItem xs="12" Class="d-flex justify-center">
             <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Disabled="@(!Validated)" Color="Color.Primary" Size="Size.Large" Style="width: 100%;">@_localizer["Sign In"]</MudButton>
-        </MudItem>
-        <MudItem xs="12">
-            <MudButton OnClick="FillAdministratorCredentials">@_localizer["Fill Administrator Credentials"]</MudButton>
-        </MudItem>
-        <MudItem xs="12">
-            <MudButton OnClick="FillBasicUserCredentials">@_localizer["Fill Basic User Credentials"]</MudButton>
         </MudItem>
     </MudGrid>
 </EditForm>
