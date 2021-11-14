@@ -15,8 +15,6 @@ namespace Collabile.Web.Managers
 
         Task<IResult<UserRolesResponse>> GetRolesAsync(string userId);
 
-        Task<IResult> RegisterUserAsync(RegisterRequest request);
-
         Task<IResult> ToggleUserStatusAsync(ToggleUserStatusRequest request);
 
         Task<IResult> UpdateRolesAsync(UpdateUserRolesRequest request);

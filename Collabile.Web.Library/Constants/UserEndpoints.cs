@@ -22,7 +22,6 @@ namespace Collabile.Web.Library.Constants
         }
 
         public static string Export = "api/user/export";
-        public static string Register = "api/user";
         public static string ToggleUserStatus = "api/user/toggle-status";
         public static string ForgotPassword = "api/user/forgot-password";
         public static string ResetPassword = "api/user/reset-password";

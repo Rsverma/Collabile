@@ -4,7 +4,7 @@
    height="72"
    version="1.1"
    id="svg15"
-   sodipodi:docname="icon-online.svg"
+   sodipodi:docname="logo.svg"
    inkscape:version="1.1 (c68e22c387, 2021-05-23)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -23,7 +23,7 @@
      inkscape:snap-bbox="true"
      inkscape:snap-global="false"
      inkscape:zoom="5.1068824"
-     inkscape:cx="-4.6016333"
+     inkscape:cx="49.540988"
      inkscape:cy="42.002142"
      inkscape:window-width="1366"
      inkscape:window-height="705"
@@ -235,7 +235,7 @@
          id="lpe_path-effect7659"
          style="fill:#d3d3d3;fill-opacity:1;stroke:#5bc980;stroke-width:1.92112;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0"
          class="powerclip"
-         d="m 4.443944,34.280329 h 35.42805 V 69.54951 H 4.443944 Z M 49.08042,41.904236 A 16.966898,16.966896 0 0 0 32.113522,24.93734 16.966898,16.966896 0 0 0 15.146624,41.904236 16.966898,16.966896 0 0 0 32.113522,58.871132 16.966898,16.966896 0 0 0 49.08042,41.904236 Z" />
+         d="M 4.4439438,34.280329 H 39.871991 V 69.54951 H 4.4439438 Z M 49.08042,41.904236 A 16.966898,16.966896 0 0 0 32.113522,24.93734 16.966898,16.966896 0 0 0 15.146624,41.904236 16.966898,16.966896 0 0 0 32.113522,58.871132 16.966898,16.966896 0 0 0 49.08042,41.904236 Z" />
     </clipPath>
     <clipPath
        clipPathUnits="userSpaceOnUse"
@@ -252,78 +252,8 @@
          id="lpe_path-effect7689"
          style="fill:#d3d3d3;fill-opacity:1;stroke:#5bc980;stroke-width:1.92112;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0"
          class="powerclip"
-         d="m 4.443944,34.280329 h 35.42805 V 69.54951 H 4.443944 Z M 49.08042,41.904236 A 16.966898,16.966896 0 0 0 32.113522,24.93734 16.966898,16.966896 0 0 0 15.146624,41.904236 16.966898,16.966896 0 0 0 32.113522,58.871132 16.966898,16.966896 0 0 0 49.08042,41.904236 Z" />
+         d="M 4.4439438,34.280329 H 39.871991 V 69.54951 H 4.4439438 Z M 49.08042,41.904236 A 16.966898,16.966896 0 0 0 32.113522,24.93734 16.966898,16.966896 0 0 0 15.146624,41.904236 16.966898,16.966896 0 0 0 32.113522,58.871132 16.966898,16.966896 0 0 0 49.08042,41.904236 Z" />
     </clipPath>
-    <meshgradient
-       inkscape:collect="always"
-       id="meshgradient28854"
-       gradientUnits="userSpaceOnUse"
-       x="13.794272"
-       y="13.418561">
-      <meshrow
-         id="meshrow28856">
-        <meshpatch
-           id="meshpatch28858">
-          <stop
-             path="c 2.77127,0  5.54254,0  8.31381,0"
-             style="stop-color:#ffffff;stop-opacity:1"
-             id="stop28860" />
-          <stop
-             path="c 0,3.28993  0,6.57987  0,9.8698"
-             style="stop-color:#800080;stop-opacity:1"
-             id="stop28862" />
-          <stop
-             path="c -2.77127,0  -5.54254,0  -8.31381,0"
-             style="stop-color:#ffffff;stop-opacity:1"
-             id="stop28864" />
-          <stop
-             path="c 0,-3.28993  0,-6.57987  0,-9.8698"
-             style="stop-color:#800080;stop-opacity:1"
-             id="stop28866" />
-        </meshpatch>
-        <meshpatch
-           id="meshpatch28868">
-          <stop
-             path="c 2.77127,0  5.54254,0  8.31381,0"
-             id="stop28870" />
-          <stop
-             path="c 0,3.28993  0,6.57987  0,9.8698"
-             style="stop-color:#ffffff;stop-opacity:1"
-             id="stop28872" />
-          <stop
-             path="c -2.77127,0  -5.54254,0  -8.31381,0"
-             style="stop-color:#800080;stop-opacity:1"
-             id="stop28874" />
-        </meshpatch>
-      </meshrow>
-      <meshrow
-         id="meshrow28876">
-        <meshpatch
-           id="meshpatch28878">
-          <stop
-             path="c 0,3.28993  0,6.57987  0,9.8698"
-             id="stop28880" />
-          <stop
-             path="c -2.77127,0  -5.54254,0  -8.31381,0"
-             style="stop-color:#800080;stop-opacity:1"
-             id="stop28882" />
-          <stop
-             path="c 0,-3.28993  0,-6.57987  0,-9.8698"
-             style="stop-color:#ffffff;stop-opacity:1"
-             id="stop28884" />
-        </meshpatch>
-        <meshpatch
-           id="meshpatch28886">
-          <stop
-             path="c 0,3.28993  0,6.57987  0,9.8698"
-             id="stop28888" />
-          <stop
-             path="c -2.77127,0  -5.54254,0  -8.31381,0"
-             style="stop-color:#ffffff;stop-opacity:1"
-             id="stop28890" />
-        </meshpatch>
-      </meshrow>
-    </meshgradient>
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient29380"
@@ -333,14 +263,14 @@
        fx="32.21143"
        fy="35.833996"
        r="17.52537"
-       gradientTransform="matrix(2.0950915,-2.1433795e-4,2.0919414e-4,2.0446343,-35.281957,-37.426517)"
+       gradientTransform="matrix(2.0950915,-2.1433795e-4,2.0919414e-4,2.0446343,-31.281957,-39.426517)"
        gradientUnits="userSpaceOnUse" />
   </defs>
   <ellipse
      style="fill:url(#radialGradient29382);fill-opacity:1;stroke:none;stroke-width:6.86711;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      id="path28488"
-     cx="32.21143"
-     cy="35.833996"
+     cx="36.21143"
+     cy="33.833996"
      rx="17.52537"
      ry="18.014906" />
   <path
@@ -350,7 +280,7 @@
      clip-path="url(#clipPath7605)"
      inkscape:path-effect="#path-effect7609"
      inkscape:original-d="M 32,22.269531 A 19.730896,19.73139 0 0 0 12.269531,42 a 19.730896,19.73139 0 0 0 0.0078,0.09961 l 19.773437,0.002 -0.0039,-19.830078 A 19.730896,19.73139 0 0 0 32,22.269531 Z"
-     transform="translate(0,-6)" />
+     transform="translate(4,-8)" />
   <path
      id="path6549"
      style="fill:#d3d3d3;fill-opacity:0;stroke:#7fe881;stroke-width:5.638;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -358,10 +288,10 @@
      clip-path="url(#clipPath7575)"
      inkscape:path-effect="#path-effect7579"
      inkscape:original-d="m 32.046875,22.271484 0.0039,19.775391 19.677735,0.002 a 19.730608,19.734177 0 0 0 0.002,-0.04492 19.730608,19.734177 0 0 0 -19.683594,-19.732422 z"
-     transform="translate(0,-6)" />
+     transform="translate(4,-8)" />
   <path
      style="fill:none;stroke:#ec5469;stroke-width:5.638;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="M 32.30934,55.681467 64.031238,55.094025"
+     d="M 36.30934,53.681467 68.031238,53.094025"
      id="path8098" />
   <path
      id="path7414"
@@ -370,7 +300,7 @@
      clip-path="url(#clipPath7685)"
      inkscape:original-d="m 15.160157,42.099894 -2.882813,-2.85e-4 A 19.730896,19.73139 0 0 0 32,61.730469 a 19.730896,19.73139 0 0 0 0.05273,-0.0039 l -2.85e-4,-2.859375"
      inkscape:path-effect="#path-effect7659;#path-effect7689"
-     transform="translate(0,-6)" />
+     transform="translate(4,-8)" />
   <path
      id="path6399"
      style="fill:#d3d3d3;fill-opacity:0;stroke:#5bc980;stroke-width:5.638;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -378,10 +308,10 @@
      clip-path="url(#clipPath7567)"
      inkscape:path-effect="#path-effect7571"
      inkscape:original-d="m 51.728516,42.048828 -19.677735,-0.002 0.002,19.685547 A 19.730608,19.734177 0 0 0 51.728516,42.048828 Z"
-     transform="translate(5.054524e-4,-5.9995414)" />
+     transform="translate(4.0005055,-7.9995414)" />
   <path
-     style="fill:none;stroke:#ffb64d;stroke-width:5.638;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="M 0.97907059,56.26891 32.700969,55.681468"
+     style="fill:none;stroke:#ffb64d;stroke-width:5.95549;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M 1.0430657,54.266585 36.72069,53.683793"
      id="path8098-0" />
   <path
      sodipodi:type="star"
@@ -400,7 +330,7 @@
      d="m 87.528941,33.484225 -5.93204,-0.09979 3.052441,-5.087402 z"
      inkscape:transform-center-x="-0.69642456"
      inkscape:transform-center-y="-0.012973877"
-     transform="matrix(0.03066836,1.1485166,-0.84146674,0.01174407,87.808353,-42.062554)" />
+     transform="matrix(0.03066836,1.1485166,-0.84146674,0.01174407,88.199981,-44.454182)" />
   <path
      sodipodi:type="star"
      style="fill:none;fill-opacity:1;stroke:#7fe881;stroke-width:5.638;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -417,18 +347,18 @@
      inkscape:randomized="0"
      inkscape:transform-center-x="0.70734925"
      inkscape:transform-center-y="0.022267019"
-     transform="matrix(-0.02326453,-1.1486904,0.84152496,-0.00631984,4.3691414,114.11896)"
+     transform="matrix(-0.02326453,-1.1486904,0.84152496,-0.00631984,8.369141,112.11896)"
      d="m 87.528941,33.484225 -5.93204,-0.09979 3.052441,-5.087402 z" />
   <text
      xml:space="preserve"
      id="text15615"
      style="font-size:26.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect15617);fill:#001219;fill-opacity:1"
-     transform="translate(9.7907091,12.923736)"><tspan
+     transform="translate(13.790709,10.923736)"><tspan
        x="12.53125"
        y="32.832648"
-       id="tspan29792"><tspan
+       id="tspan944"><tspan
          style="font-weight:bold;font-family:Arial;-inkscape-font-specification:'Arial Bold'"
-         id="tspan29790">C</tspan></tspan></text>
+         id="tspan942">C</tspan></tspan></text>
   <script
      id="mesh_polyfill"
      type="text/javascript">

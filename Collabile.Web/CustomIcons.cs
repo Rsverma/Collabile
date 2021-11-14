@@ -4,6 +4,6 @@ namespace Collabile.Web
     [ExcludeFromCodeCoverage]
     public class CustomIcons
     {
-        public static string LogoUrl { get; } = "favicon.ico";
+        public static string LogoUrl { get; } = "logo.png";
     }
 }
