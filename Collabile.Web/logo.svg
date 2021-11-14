@@ -6,6 +6,9 @@
    id="svg15"
    sodipodi:docname="logo.svg"
    inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   inkscape:export-filename="D:\developer\Collabile\Collabile.Web\logo.png"
+   inkscape:export-xdpi="341.33334"
+   inkscape:export-ydpi="341.33334"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -24,12 +27,12 @@
      inkscape:snap-global="false"
      inkscape:zoom="5.1068824"
      inkscape:cx="49.540988"
-     inkscape:cy="42.002142"
-     inkscape:window-width="1366"
-     inkscape:window-height="705"
-     inkscape:window-x="1358"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1"
+     inkscape:cy="42.100049"
+     inkscape:window-width="1271"
+     inkscape:window-height="728"
+     inkscape:window-x="1445"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
      inkscape:current-layer="svg15" />
   <defs
      id="defs7">
@@ -356,9 +359,9 @@
      transform="translate(13.790709,10.923736)"><tspan
        x="12.53125"
        y="32.832648"
-       id="tspan944"><tspan
+       id="tspan1001"><tspan
          style="font-weight:bold;font-family:Arial;-inkscape-font-specification:'Arial Bold'"
-         id="tspan942">C</tspan></tspan></text>
+         id="tspan999">C</tspan></tspan></text>
   <script
      id="mesh_polyfill"
      type="text/javascript">

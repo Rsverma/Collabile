@@ -2,6 +2,7 @@ ServiceCollectionExtensions
 	AddSerialization
 	AddDatabase
 	AddSharedInfrastructure
+	AuditableEntity
 
 WebAssemblyHostBuilderExtensions
 	AddExtendedAttributeManagers
