@@ -6,7 +6,6 @@ using Collabile.Web.Authentication;
 using Collabile.Web.Extensions;
 using Collabile.Web.Library.Constants;
 using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.Extensions.Localization;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Security.Claims;
@@ -18,18 +17,15 @@ namespace Collabile.Web.Managers
         private readonly HttpClient _httpClient;
         private readonly ILocalStorageService _localStorage;
         private readonly AuthenticationStateProvider _authenticationStateProvider;
-        private readonly IStringLocalizer<AuthenticationManager> _localizer;
 
         public AuthenticationManager(
             HttpClient httpClient,
             ILocalStorageService localStorage,
-            AuthenticationStateProvider authenticationStateProvider,
-            IStringLocalizer<AuthenticationManager> localizer)
+            AuthenticationStateProvider authenticationStateProvider)
         {
             _httpClient = httpClient;
             _localStorage = localStorage;
             _authenticationStateProvider = authenticationStateProvider;
-            _localizer = localizer;
         }
 
         public async Task<ClaimsPrincipal> CurrentUser()
@@ -84,7 +80,7 @@ namespace Collabile.Web.Managers
 
             if (!result.Succeeded)
             {
-                throw new ApplicationException(_localizer["Something went wrong during the refresh token action"]);
+                throw new ApplicationException("Something went wrong during the refresh token action");
             }
 
             token = result.Data.Token;

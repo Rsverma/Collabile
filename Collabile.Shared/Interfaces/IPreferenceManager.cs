@@ -8,6 +8,5 @@ namespace Collabile.Shared.Interfaces
 
         Task<IPreference> GetPreference();
 
-        Task<IResult> ChangeLanguageAsync(string languageCode);
     }
 }

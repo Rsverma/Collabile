@@ -27,7 +27,7 @@ namespace Collabile.Web.Pages
             var result = await _authenticationManager.Login(_tokenModel);
             if (result.Succeeded)
             {
-                _snackBar.Add(string.Format(_localizer["Welcome {0}"], _tokenModel.Email), Severity.Success);
+                _snackBar.Add(string.Format("Welcome {0}", _tokenModel.Email), Severity.Success);
                 _navigationManager.NavigateTo("/", true);
             }
             else
