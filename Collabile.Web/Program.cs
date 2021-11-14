@@ -1,14 +1,13 @@
-using Blazored.LocalStorage;
 using Collabile.Shared.Constants;
-using Collabile.Web;
+using Collabile.Web.Extensions;
 using Collabile.Web.Library;
 using Collabile.Web.Managers;
-using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using System.Globalization;
 
-var builder = WebAssemblyHostBuilder.CreateDefault(args);
+var builder = WebAssemblyHostBuilder.CreateDefault(args)
+                          .AddRootComponents()
+                          .AddClientServices();
 var host = builder.Build();
 var storageService = host.Services.GetRequiredService<ClientPreferenceManager>();
 if (storageService != null)

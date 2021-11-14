@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Collabile.Shared\Collabile.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
 </Project>
