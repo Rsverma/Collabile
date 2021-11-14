@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Portal", "Portal", "{1CF2FE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collabile.Web.Library", "Collabile.Web.Library\Collabile.Web.Library.csproj", "{16BC0182-664D-4495-8CA5-836F8FDE6379}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{ED2A1AD0-A966-4EE6-96B3-CBE5D5B4D955}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{AA5F5986-8C37-4C55-B847-C5ED736CA992} = {ED2A1AD0-A966-4EE6-96B3-CBE5D5B4D955}
 		{8FC76094-FCEF-4548-9FA9-921B74012BB3} = {1CF2FEC5-6BE4-4852-9B4F-2656D15AF46A}
 		{16BC0182-664D-4495-8CA5-836F8FDE6379} = {1CF2FEC5-6BE4-4852-9B4F-2656D15AF46A}
 	EndGlobalSection

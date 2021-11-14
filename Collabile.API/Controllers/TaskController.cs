@@ -25,12 +25,12 @@ namespace Collabile.Api.Controllers
         public IActionResult GetAll()
         {
             string userId = User.FindFirstValue(ClaimTypes.Name);
-            List<Task> tasks = _taskService.GetAllTasks(int.Parse(userId));
+            List<WorkTask> tasks = _taskService.GetAllTasks(int.Parse(userId));
             return Ok(tasks);
         }
 
         [HttpPost]
-        public IActionResult Post(Task task)
+        public IActionResult Post(WorkTask task)
         {
             int taskId = _taskService.SaveTask(task);
             task.Id = taskId;
@@ -38,7 +38,7 @@ namespace Collabile.Api.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put(Task task)
+        public IActionResult Put(WorkTask task)
         {
             int userId = int.Parse(User.FindFirstValue(ClaimTypes.Name));
             string role = User.FindFirstValue(ClaimTypes.Role);

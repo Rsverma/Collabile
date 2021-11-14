@@ -4,46 +4,44 @@ using Collabile.Shared.Constants;
 using Collabile.Shared.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Collabile.Api.Controllers
 {
     [AllowAnonymous]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/token")]
     public class TokenController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly ITokenService _identityService;
 
-        public TokenController(IUserService userService)
+        public TokenController(ITokenService identityService, ICurrentUserService currentUserService)
         {
-            _userService = userService;
+            _identityService = identityService;
         }
 
-        [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody] TokenRequest model)
+        /// <summary>
+        /// Get Token (Email, Password)
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>Status 200 OK</returns>
+        [HttpPost]
+        public async Task<ActionResult> Get(TokenRequest model)
         {
-            var user = _userService.Authenticate(model.Email, model.Password);
-
-            if (user == null)
-                return BadRequest("Username or password is incorrect");
-
-            return Ok(user);
+            var response = await _identityService.LoginAsync(model);
+            return Ok(response);
         }
 
-        [HttpPost("signup")]
-        public IActionResult SignUp([FromBody] SignUpModel userDetails)
+        /// <summary>
+        /// Refresh Token
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>Status 200 OK</returns>
+        [HttpPost("refresh")]
+        public async Task<ActionResult> Refresh([FromBody] RefreshTokenRequest model)
         {
-            User newUser = new()
-            {
-                Username = userDetails.Username,
-                Password = userDetails.Password,
-                UserRole = Role.User
-            };
-            bool success = _userService.CreateUser(newUser);
-
-            if (success)
-                return Ok();
-            return BadRequest();
+            var response = await _identityService.GetRefreshTokenAsync(model);
+            return Ok(response);
         }
     }
 }

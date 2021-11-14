@@ -19,18 +19,18 @@ namespace Collabile.Api.Services
             _ = _sql.SaveData("dbo.spTask_Delete", new { Id = taskId, userId });
         }
 
-        public List<Task> GetAllTasks(int userId)
+        public List<WorkTask> GetAllTasks(int userId)
         {
-            var tasks = _sql.LoadData<Task, dynamic>("dbo.spTask_GetAll", new { userId });
+            var tasks = _sql.LoadData<WorkTask, dynamic>("dbo.spTask_GetAll", new { userId });
             return tasks;
         }
 
-        public int SaveTask(Task task)
+        public int SaveTask(WorkTask task)
         {
             return _sql.SaveDataScalar("dbo.spTask_Insert", task);
         }
 
-        public void UpdateTask(Task task)
+        public void UpdateTask(WorkTask task)
         {
             _ = _sql.SaveData("dbo.spTask_Update", task);
         }

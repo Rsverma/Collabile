@@ -7,10 +7,11 @@ using System.Security.Claims;
 using Collabile.Api.Models;
 using Collabile.Api.Helpers;
 using Collabile.Shared.Constants;
+using System.Threading.Tasks;
 
 namespace Collabile.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/user")]
     [ApiController]
     [Authorize]
     public class UserController : ControllerBase
@@ -22,48 +23,129 @@ namespace Collabile.Api.Controllers
             _userService = userService;
         }
 
-        [Authorize(Role.Admin)]
+        /// <summary>
+        /// Get User Details
+        /// </summary>
+        /// <returns>Status 200 OK</returns>
+        [Authorize(Policy = Permissions.Users.View)]
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var users = _userService.GetAll();
+            var users = await _userService.GetAllAsync();
             return Ok(users);
         }
 
-        [Authorize(Role.Admin)]
+        /// <summary>
+        /// Get User By Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Status 200 OK</returns>
+        //[Authorize(Policy = Permissions.Users.View)]
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(string id)
+        {
+            var user = await _userService.GetAsync(id);
+            return Ok(user);
+        }
+
+        /// <summary>
+        /// Get User Roles By Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Status 200 OK</returns>
+        [Authorize(Policy = Permissions.Users.View)]
+        [HttpGet("roles/{id}")]
+        public async Task<IActionResult> GetRolesAsync(string id)
+        {
+            var userRoles = await _userService.GetRolesAsync(id);
+            return Ok(userRoles);
+        }
+
+        /// <summary>
+        /// Update Roles for User
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>Status 200 OK</returns>
+        [Authorize(Policy = Permissions.Users.Edit)]
+        [HttpPut("roles/{id}")]
+        public async Task<IActionResult> UpdateRolesAsync(UpdateUserRolesRequest request)
+        {
+            return Ok(await _userService.UpdateRolesAsync(request));
+        }
+
+        /// <summary>
+        /// Register a User
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>Status 200 OK</returns>
+        [AllowAnonymous]
         [HttpPost]
-        public IActionResult Post(User user)
+        public async Task<IActionResult> RegisterAsync(RegisterRequest request)
         {
-            if (_userService.CreateUser(user))
-                return Ok();
-            return BadRequest();
+            var origin = Request.Headers["origin"];
+            return Ok(await _userService.RegisterAsync(request, origin));
         }
 
-        [HttpPut]
-        public IActionResult Put(User user)
+        /// <summary>
+        /// Confirm Email
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="code"></param>
+        /// <returns>Status 200 OK</returns>
+        [HttpGet("confirm-email")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ConfirmEmailAsync([FromQuery] string userId, [FromQuery] string code)
         {
-            string username = User.FindFirstValue(ClaimTypes.Name);
-            string role = User.FindFirstValue(ClaimTypes.Role);
-            if (role == Role.Admin.ToString() || user.Username == username)
-            {
-                _userService.UpdateUser(user);
-                return Ok();
-            }
-            return BadRequest("Authorization issue");
+            return Ok(await _userService.ConfirmEmailAsync(userId, code));
         }
 
-        [Route("{userId}")]
-        [HttpDelete]
-        public IActionResult Delete(string username)
+        /// <summary>
+        /// Toggle User Status (Activate and Deactivate)
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>Status 200 OK</returns>
+        [HttpPost("toggle-status")]
+        public async Task<IActionResult> ToggleUserStatusAsync(ToggleUserStatusRequest request)
         {
-            string currentUsername = User.FindFirstValue(ClaimTypes.Name);
-            string role = User.FindFirstValue(ClaimTypes.Role);
-            if (role == Role.Admin.ToString() || username == currentUsername)
-            {
-                _userService.DeleteUser(username);
-                return Ok();
-            }
-            return BadRequest("Authorization issue");
+            return Ok(await _userService.ToggleUserStatusAsync(request));
+        }
+
+        /// <summary>
+        /// Forgot Password
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>Status 200 OK</returns>
+        [HttpPost("forgot-password")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ForgotPasswordAsync(ForgotPasswordRequest request)
+        {
+            var origin = Request.Headers["origin"];
+            return Ok(await _userService.ForgotPasswordAsync(request, origin));
+        }
+
+        /// <summary>
+        /// Reset Password
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>Status 200 OK</returns>
+        [HttpPost("reset-password")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ResetPasswordAsync(ResetPasswordRequest request)
+        {
+            return Ok(await _userService.ResetPasswordAsync(request));
+        }
+
+        /// <summary>
+        /// Export to Excel
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <returns>Status 200 OK</returns>
+        [Authorize(Policy = Permissions.Users.Export)]
+        [HttpGet("export")]
+        public async Task<IActionResult> Export(string searchString = "")
+        {
+            var data = await _userService.ExportToExcelAsync(searchString);
+            return Ok(data);
         }
     }
 }

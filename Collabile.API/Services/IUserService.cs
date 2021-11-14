@@ -1,19 +1,34 @@
 ﻿using Collabile.Api.Models;
+using Collabile.Shared.Helper;
+using Collabile.Shared.Interfaces;
 using Collabile.Shared.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Collabile.Api.Services
 {
-    public interface IUserService
+    public interface IUserService : IService
     {
-        AuthenticatedUser Authenticate(string username, string password);
+        Task<Result<List<UserResponse>>> GetAllAsync();
 
-        bool CreateUser(User user);
+        Task<int> GetCountAsync();
 
-        void UpdateUser(User user);
+        Task<IResult<UserResponse>> GetAsync(string userId);
 
-        void DeleteUser(string username);
+        Task<IResult> RegisterAsync(RegisterRequest request, string origin);
 
-        IEnumerable<User> GetAll();
+        Task<IResult> ToggleUserStatusAsync(ToggleUserStatusRequest request);
+
+        Task<IResult<UserRolesResponse>> GetRolesAsync(string id);
+
+        Task<IResult> UpdateRolesAsync(UpdateUserRolesRequest request);
+
+        Task<IResult<string>> ConfirmEmailAsync(string userId, string code);
+
+        Task<IResult> ForgotPasswordAsync(ForgotPasswordRequest request, string origin);
+
+        Task<IResult> ResetPasswordAsync(ResetPasswordRequest request);
+
+        Task<string> ExportToExcelAsync(string searchString = "");
     }
 }

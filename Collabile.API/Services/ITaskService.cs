@@ -5,12 +5,12 @@ namespace Collabile.Api.Services
 {
     public interface ITaskService
     {
-        int SaveTask(Task task);
+        int SaveTask(WorkTask task);
 
-        void UpdateTask(Task task);
+        void UpdateTask(WorkTask task);
 
         void DeleteTask(int taskId, int userId);
 
-        List<Task> GetAllTasks(int userId);
+        List<WorkTask> GetAllTasks(int userId);
     }
 }

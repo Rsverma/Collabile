@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Collabile.Api.Models
 {
     [Table("Task")]
-    public class Task
+    public class WorkTask
     {
         [Key]
         public int Id { get; set; }
