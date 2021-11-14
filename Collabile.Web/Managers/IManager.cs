@@ -1,4 +1,4 @@
-﻿namespace Collabile.Web.Library.Interfaces
+﻿namespace Collabile.Web.Managers
 {
     public interface IManager
     {
