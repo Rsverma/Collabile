@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collabile.Web", "Collabile.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Portal", "Portal", "{1CF2FEC5-6BE4-4852-9B4F-2656D15AF46A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collabile.Web.Library", "Collabile.Web.Library\Collabile.Web.Library.csproj", "{16BC0182-664D-4495-8CA5-836F8FDE6379}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collabile.Web.Library", "Collabile.Web.Library\Collabile.Web.Library.csproj", "{16BC0182-664D-4495-8CA5-836F8FDE6379}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

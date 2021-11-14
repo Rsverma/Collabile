@@ -13,7 +13,6 @@ using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
-using Collabile.Web.Library.Interfaces;
 using Collabile.Shared.Constants;
 using Collabile.Web.Helper;
 
@@ -53,8 +52,8 @@ namespace Collabile.Web.Extensions
                 })
                 .AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies())
                 .AddScoped<ClientPreferenceManager>()
-                .AddScoped<BlazorHeroStateProvider>()
-                .AddScoped<AuthenticationStateProvider, BlazorHeroStateProvider>()
+                .AddScoped<AuthStateProvider>()
+                .AddScoped<AuthenticationStateProvider, AuthStateProvider>()
                 .AddManagers()
                 .AddExtendedAttributeManagers()
                 .AddTransient<AuthenticationHeaderHandler>()

@@ -3,7 +3,7 @@ using Collabile.Shared.Models;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace Collabile.Web.Library.Interfaces
+namespace Collabile.Web.Managers
 {
     public interface IAuthenticationManager : IManager
     {

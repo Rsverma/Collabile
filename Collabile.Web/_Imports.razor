@@ -20,7 +20,6 @@
 @using Collabile.Web.Managers
 @using Collabile.Web.Shared
 @using Collabile.Web.Authentication
-@using Collabile.Web.Library.Interfaces
 @using Collabile.Shared.Models
 @using Collabile.Web.Pages
 
@@ -29,12 +28,13 @@
 @inject NavigationManager _navigationManager
 @inject IAuthenticationManager _authenticationManager
 @inject IAccountManager _accountManager
-@inject BlazorHeroStateProvider _stateProvider
+@inject AuthStateProvider _stateProvider
 @inject IAuthorizationService _authorizationService
 @inject ISnackbar _snackBar
 @inject IUserManager _userManager
 @inject IDialogService _dialogService
 @inject HttpClient _httpClient
+@inject IHttpInterceptorManager _interceptor
 @inject ClientPreferenceManager _clientPreferenceManager
 @inject ILocalStorageService _localStorage;
 @inject IJSRuntime _jsRuntime;

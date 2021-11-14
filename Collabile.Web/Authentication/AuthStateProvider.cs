@@ -8,12 +8,12 @@ using System.Text.Json;
 
 namespace Collabile.Web.Authentication
 {
-    public class BlazorHeroStateProvider : AuthenticationStateProvider
+    public class AuthStateProvider : AuthenticationStateProvider
     {
         private readonly HttpClient _httpClient;
         private readonly ILocalStorageService _localStorage;
 
-        public BlazorHeroStateProvider(
+        public AuthStateProvider(
             HttpClient httpClient,
             ILocalStorageService localStorage)
         {

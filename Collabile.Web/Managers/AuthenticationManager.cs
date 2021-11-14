@@ -5,7 +5,6 @@ using Collabile.Shared.Models;
 using Collabile.Web.Authentication;
 using Collabile.Web.Extensions;
 using Collabile.Web.Library.Constants;
-using Collabile.Web.Library.Interfaces;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Localization;
 using System.Net.Http.Headers;
@@ -54,7 +53,7 @@ namespace Collabile.Web.Managers
                 {
                     await _localStorage.SetItemAsync(StorageConstants.UserImageURL, userImageURL);
                 }
-                ((BlazorHeroStateProvider)this._authenticationStateProvider).MarkUserAsAuthenticated(model.Email);
+                ((AuthStateProvider)this._authenticationStateProvider).MarkUserAsAuthenticated(model.Email);
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 return await Result.SuccessAsync();
             }
@@ -69,7 +68,7 @@ namespace Collabile.Web.Managers
             await _localStorage.RemoveItemAsync(StorageConstants.AuthToken);
             await _localStorage.RemoveItemAsync(StorageConstants.RefreshToken);
             await _localStorage.RemoveItemAsync(StorageConstants.UserImageURL);
-            ((BlazorHeroStateProvider)_authenticationStateProvider).MarkUserAsLoggedOut();
+            ((AuthStateProvider)_authenticationStateProvider).MarkUserAsLoggedOut();
             _httpClient.DefaultRequestHeaders.Authorization = null;
             return await Result.SuccessAsync();
         }

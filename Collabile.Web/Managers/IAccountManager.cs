@@ -1,7 +1,7 @@
 ﻿using Collabile.Shared.Interfaces;
 using Collabile.Shared.Models;
 
-namespace Collabile.Web.Library.Interfaces
+namespace Collabile.Web.Managers
 {
     public interface IAccountManager : IManager
     {

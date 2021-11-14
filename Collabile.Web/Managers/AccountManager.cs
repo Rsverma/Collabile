@@ -2,7 +2,6 @@
 using Collabile.Shared.Models;
 using Collabile.Web.Extensions;
 using Collabile.Web.Library.Constants;
-using Collabile.Web.Library.Interfaces;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
