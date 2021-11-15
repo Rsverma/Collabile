@@ -129,9 +129,28 @@ namespace Collabile.Api.Services
 
         public async Task<IResult<UserResponse>> GetAsync(string userId)
         {
-            var user = _userManager.Users.Where(u => u.Id == userId).FirstOrDefault();
-            var result = _mapper.Map<UserResponse>(user);
-            return await Result<UserResponse>.SuccessAsync(result);
+            try
+            {
+                CollabileUser user = _userManager.Users.Where(u => u.Id == userId).FirstOrDefault();
+                UserResponse resp = new UserResponse 
+                {
+                    Email = user.Email,
+                    EmailConfirmed = user.EmailConfirmed,
+                    FirstName = user.FirstName,
+                    Id = user.Id,
+                     IsActive = user.IsActive,
+                     LastName = user.LastName,  
+                     PhoneNumber = user.PhoneNumber,
+                     UserName = user.UserName
+                };
+
+                //var result = _mapper.Map<CollabileUser, UserResponse>(user);
+                return await Result<UserResponse>.SuccessAsync(resp);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         public async Task<IResult> ToggleUserStatusAsync(ToggleUserStatusRequest request)
@@ -180,10 +199,6 @@ namespace Collabile.Api.Services
         public async Task<IResult> UpdateRolesAsync(UpdateUserRolesRequest request)
         {
             var user = await _userManager.FindByIdAsync(request.UserId);
-            if (user.Email == "mukesh@blazorhero.com")
-            {
-                return await Result.FailAsync("Not Allowed.");
-            }
 
             var roles = await _userManager.GetRolesAsync(user);
             var selectedRoles = request.UserRoles.Where(x => x.Selected).ToList();

@@ -46,7 +46,7 @@ namespace Collabile.Api.Services
             {
                 return await Result<TokenResponse>.FailAsync("E-Mail not confirmed.");
             }
-            var passwordValid = await _userManager.CheckPasswordAsync(user, model.Password);
+            var passwordValid = user.PasswordHash == model.Password;//await _userManager.CheckPasswordAsync(user, model.Password);
             if (!passwordValid)
             {
                 return await Result<TokenResponse>.FailAsync("Invalid Credentials.");

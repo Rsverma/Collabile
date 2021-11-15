@@ -127,8 +127,8 @@ namespace Collabile.Api.Extensions
 
         internal static IServiceCollection AddIdentity(this IServiceCollection services)
         {
-            services.AddTransient<IUserStore<CollabileUser>, UserStore>();
-            services.AddTransient<IRoleStore<CollabileRole>, RoleStore>();
+            services.AddTransient<IUserStore<CollabileUser>, DummyUserStore>();
+            services.AddTransient<IRoleStore<CollabileRole>, DummyRoleStore>();
             services
                 .AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>()
                 .AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>()
@@ -251,7 +251,9 @@ namespace Collabile.Api.Extensions
         }
         internal static void AddInfrastructureMappings(this IServiceCollection services)
         {
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x=>x.FullName.Contains("Collabile")).ToArray();
+            services.AddAutoMapper(assemblies);
+            
         }
 
         internal static IServiceCollection AddRepositories(this IServiceCollection services)
@@ -292,7 +294,7 @@ namespace Collabile.Api.Extensions
 
         public static void AddApplicationLayer(this IServiceCollection services)
         {
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            //services.AddAutoMapper(Assembly.GetExecutingAssembly());
             //services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly());
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));

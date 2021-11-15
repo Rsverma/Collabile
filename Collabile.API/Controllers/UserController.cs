@@ -144,8 +144,9 @@ namespace Collabile.Api.Controllers
         [HttpGet("export")]
         public async Task<IActionResult> Export(string searchString = "")
         {
-            var data = await _userService.ExportToExcelAsync(searchString);
-            return Ok(data);
+            await Task.CompletedTask;
+            //var data = await _userService.ExportToExcelAsync(searchString);
+            return Ok();
         }
     }
 }
