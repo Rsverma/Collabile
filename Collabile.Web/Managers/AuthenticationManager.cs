@@ -42,13 +42,9 @@ namespace Collabile.Web.Managers
             {
                 var token = result.Data.Token;
                 var refreshToken = result.Data.RefreshToken;
-                var userImageURL = result.Data.UserImageURL;
                 await _localStorage.SetItemAsync(StorageConstants.AuthToken, token);
                 await _localStorage.SetItemAsync(StorageConstants.RefreshToken, refreshToken);
-                if (!string.IsNullOrEmpty(userImageURL))
-                {
-                    await _localStorage.SetItemAsync(StorageConstants.UserImageURL, userImageURL);
-                }
+                
                 ((AuthStateProvider)this._authenticationStateProvider).MarkUserAsAuthenticated(model.Email);
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 return await Result.SuccessAsync();

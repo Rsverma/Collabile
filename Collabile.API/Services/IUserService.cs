@@ -29,6 +29,6 @@ namespace Collabile.Api.Services
 
         Task<IResult> ResetPasswordAsync(ResetPasswordRequest request);
 
-        Task<string> ExportToExcelAsync(string searchString = "");
+        //Task<string> ExportToExcelAsync(string searchString = "");
     }
 }
