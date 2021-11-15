@@ -3,6 +3,12 @@ ServiceCollectionExtensions
 	AddDatabase
 	AddSharedInfrastructure
 	AuditableEntity
+	AddServerStorage
+	AddExtendedAttributesUnitOfWork
+	AddExtendedAttributesHandlers
+	AddExtendedAttributesValidators
+	ServerPreferenceManager
+*	AddRepositories
 
 WebAssemblyHostBuilderExtensions
 	AddExtendedAttributeManagers

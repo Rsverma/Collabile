@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
@@ -43,22 +44,22 @@ namespace Collabile.Api
             services.AddControllers();
 
             services.AddCurrentUserService();
-            services.AddServerStorage(); //TODO - should implement ServerStorageProvider to work correctly!
-            services.AddScoped<ServerPreferenceManager>();
+            //services.AddServerStorage(); //TODO - should implement ServerStorageProvider to work correctly!
+            //services.AddScoped<ServerPreferenceManager>();
             services.AddIdentity();
             services.AddJwtAuthentication(services.GetApplicationSettings(_configuration));
             services.AddApplicationLayer();
             services.AddApplicationServices();
             services.AddRepositories();
-            services.AddExtendedAttributesUnitOfWork();
+            //services.AddExtendedAttributesUnitOfWork();
             services.AddSharedInfrastructure(_configuration);
             services.RegisterSwagger();
             services.AddInfrastructureMappings();
             services.AddHangfire(x => x.UseSqlServerStorage(_configuration.GetConnectionString("DefaultConnection")));
             services.AddHangfireServer();
             services.AddControllers().AddValidators();
-            services.AddExtendedAttributesValidators();
-            services.AddExtendedAttributesHandlers();
+            //services.AddExtendedAttributesValidators();
+            //services.AddExtendedAttributesHandlers();
             services.AddRazorPages();
             services.AddApiVersioning(config =>
             {
