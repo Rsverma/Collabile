@@ -1,10 +1,10 @@
-﻿using Collabile.Shared.Helper;
+﻿using Collabile.Api.Services;
+using Collabile.Shared.Helper;
 using Collabile.Shared.Interfaces;
-using Collabile.Shared.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Collabile.Api.Services
+namespace Collabile.Shared.Models
 {
     public class ChatService : IChatService
     {

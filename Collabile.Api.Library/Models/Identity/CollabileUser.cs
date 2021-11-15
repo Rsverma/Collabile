@@ -1,11 +1,7 @@
-﻿using Collabile.Shared.Interfaces;
-using Collabile.Shared.Models;
+﻿using Collabile.Shared.Models;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Collabile.Api.Models
+namespace Collabile.DataAccess.Models.Identity
 {
     public class CollabileUser : IdentityUser<string>, IChatUser
     {
@@ -13,9 +9,6 @@ namespace Collabile.Api.Models
 
         public string LastName { get; set; }
         public string CreatedBy { get; set; }
-
-        [Column(TypeName = "text")]
-        public string ProfilePictureDataUrl { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

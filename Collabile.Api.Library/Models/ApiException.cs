@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace Collabile.Api.Library.Models
+namespace Collabile.DataAccess.Models
 {
     public class ApiException : Exception
     {

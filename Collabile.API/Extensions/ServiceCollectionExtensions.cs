@@ -27,6 +27,9 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using FluentValidation.AspNetCore;
+using Collabile.DataAccess.Models.Identity;
+using Collabile.DataAccess.Stores;
+using Collabile.Shared.Models;
 
 namespace Collabile.Api.Extensions
 {
@@ -80,8 +83,8 @@ namespace Collabile.Api.Extensions
                     Title = "Collabile.Web",
                     License = new OpenApiLicense
                     {
-                        Name = "MIT License",
-                        Url = new Uri("https://opensource.org/licenses/MIT")
+                        Name = "AGPL-3.0 License",
+                        Url = new Uri("https://opensource.org/licenses/AGPL-3.0")
                     }
                 });
 
@@ -124,6 +127,8 @@ namespace Collabile.Api.Extensions
 
         internal static IServiceCollection AddIdentity(this IServiceCollection services)
         {
+            services.AddTransient<IUserStore<CollabileUser>, UserStore>();
+            services.AddTransient<IRoleStore<CollabileRole>, RoleStore>();
             services
                 .AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>()
                 .AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>()

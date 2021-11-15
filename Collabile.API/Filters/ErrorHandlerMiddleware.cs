@@ -1,4 +1,4 @@
-﻿using Collabile.Api.Library.Models;
+﻿using Collabile.DataAccess.Models;
 using Collabile.Shared.Helper;
 using Microsoft.AspNetCore.Http;
 using System;

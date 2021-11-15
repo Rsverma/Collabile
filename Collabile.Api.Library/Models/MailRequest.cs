@@ -1,4 +1,4 @@
-﻿namespace Collabile.Api.Library.Models
+﻿namespace Collabile.DataAccess.Models
 {
     public class MailRequest
     {

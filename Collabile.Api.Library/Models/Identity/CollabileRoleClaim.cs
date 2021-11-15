@@ -1,7 +1,6 @@
-﻿using System;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 
-namespace Collabile.Api.Models
+namespace Collabile.DataAccess.Models.Identity
 {
     public class CollabileRoleClaim : IdentityRoleClaim<string>
     {

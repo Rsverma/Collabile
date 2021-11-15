@@ -80,7 +80,7 @@ namespace Collabile.Api
             app.UseExceptionHandling(env);
             app.UseHttpsRedirection();
             app.UseMiddleware<ErrorHandlerMiddleware>();
-            //app.UseBlazorFrameworkFiles();
+            app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
             app.UseStaticFiles(new StaticFileOptions
             {

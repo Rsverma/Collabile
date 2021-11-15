@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Collabile.Shared.Interfaces
+namespace Collabile.Shared.Models
 {
     public interface IChatHistory<TUser> where TUser : IChatUser
     {

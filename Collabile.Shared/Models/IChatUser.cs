@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Collabile.Shared.Interfaces
+namespace Collabile.Shared.Models
 {
     public interface IChatUser
     {
@@ -8,7 +8,5 @@ namespace Collabile.Shared.Interfaces
 
         public string LastName { get; set; }
 
-        [Column(TypeName = "text")]
-        public string ProfilePictureDataUrl { get; set; }
     }
 }

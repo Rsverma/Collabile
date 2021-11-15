@@ -11,7 +11,7 @@ namespace Collabile.Web.Extensions
             if (hubConnection == null)
             {
                 hubConnection = new HubConnectionBuilder()
-                                  .WithUrl(navigationManager.ToAbsoluteUri(ApplicationConstants.SignalR.HubUrl))
+                                  .WithUrl("https://localhost:44332" +  ApplicationConstants.SignalR.HubUrl)
                                   .Build();
             }
             return hubConnection;
