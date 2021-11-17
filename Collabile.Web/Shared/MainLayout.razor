@@ -16,13 +16,14 @@
     </NotAuthorized>
     <Authorized>
         @(LoadDataAsync())
-        <MudLayout RightToLeft="@_rightToLeft">
+        <MudLayout>
             <MudAppBar Elevation="25">
+                <MudToolBar DisableGutters="true">
+                    <MudIconButton Icon="@Icons.Material.Outlined.Menu" Color="Color.Inherit" OnClick="@((e) => DrawerToggle())" Class="ml-2 mr-2" />
+                </MudToolBar>
                 <MudAvatar Image="@CustomIcons.LogoUrl" Style="height:50px; width:50px;"> </MudAvatar>
                 <MudText Typo="Typo.h6" Class="ml-4">Collabile</MudText>
-                <MudToolBar DisableGutters="true">
-                    <MudIconButton Icon="@Icons.Material.Outlined.Menu" Color="Color.Inherit" OnClick="@((e) => DrawerToggle())" Class="ml-3" />
-                </MudToolBar>
+                
                 <MudSpacer />
                     <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
                         <MudDivider Vertical="true" FlexItem="true" DividerType="DividerType.Middle" Class="mx-4 my-5" />
@@ -31,9 +32,6 @@
                             <MudMenuItem Link="https://www.linkedin.com/in/rsverma333" Target="_blank">LinkedIn</MudMenuItem>
                             <MudMenuItem Link="https://codewithrsv.com/" Target="_blank">Website</MudMenuItem>
                         </MudMenu>
-                        <MudTooltip Text="Toggle right-to-left/left-to-right">
-                            <MudIconButton Icon="@Icons.Material.Filled.FormatTextdirectionRToL" Color="Color.Inherit" OnClick="@((e) => RightToLeftToggle())" />
-                        </MudTooltip>
                         <MudTooltip Text="Toggle Dark Mode">
                             <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="@((e) => DarkMode())" />
                         </MudTooltip>
@@ -56,7 +54,7 @@
                             <MudMenuItem Link="https://codewithrsv.com/" Target="_blank">Website</MudMenuItem>
                         </MudMenu>
                     </MudHidden>
-                    <MudMenu Direction="_rightToLeft ? Direction.Right : Direction.Left" OffsetX="true" Dense="true" Class="mt-1 ml-4">
+                    <MudMenu Icon="@Icons.Filled.ManageAccounts" Color="Color.Inherit" OffsetX="true" Dense="true">
                         <ChildContent>
                             <UserCard Class="mt-n2" />
                             <MudDivider Class="mb-2" />
