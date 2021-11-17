@@ -28,7 +28,7 @@ namespace Collabile.Web.Pages.Authentication
             if (result.Succeeded)
             {
                 _snackBar.Add(string.Format("Welcome {0}", _tokenModel.Email), Severity.Success);
-                _navigationManager.NavigateTo("/", true);
+                _navigationManager.NavigateTo("/home", true);
             }
             else
             {

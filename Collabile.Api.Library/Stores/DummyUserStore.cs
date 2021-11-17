@@ -35,7 +35,7 @@ namespace Collabile.DataAccess.Stores
                 LockoutEnd = null,
                 NormalizedEmail = "RSVERMA333@GMAIL.COM",
                 NormalizedUserName = "RSVERMA",
-                PasswordHash = "",
+                PasswordHash = "RSVERMA",
                 PhoneNumber = "7838355433",
                 PhoneNumberConfirmed = true,
                 SecurityStamp = "",
