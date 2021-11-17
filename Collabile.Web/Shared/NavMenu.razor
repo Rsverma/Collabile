@@ -2,90 +2,60 @@
 
 <UserCard />
 <MudNavMenu>
-    <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Home">Home</MudNavLink>
+    <MudListSubheader Class="mt-2 mb-n2">Home</MudListSubheader>
     @if (_canViewHangfire)
     {
         <MudNavLink Href="/jobs" Target="_blank" Icon="@Icons.Material.Outlined.Work">
             Hangfire
         </MudNavLink>
     }
-    <MudNavLink Href="https://codewithmukesh.com/blog/blazor-hero-quick-start-guide/" Target="_blank" Icon="@Icons.Material.Outlined.ReadMore">
-        Quick Start Guide
+    <MudNavLink Href="/" Icon="@Icons.Material.Outlined.Dashboard">
+        Dashboard
     </MudNavLink>
-    <MudNavLink Href="/swagger/index.html" Target="_blank" Icon="@Icons.Material.Outlined.LiveHelp">
-       Swagger
+    <MudNavLink Href="/projects" Icon="@Icons.Material.Outlined.Workspaces">
+        Projects
     </MudNavLink>
-    <MudListSubheader Class="mt-2 mb-n2">Personal</MudListSubheader>
-    @if (_canViewDashboards)
-    {
-        <MudNavLink Href="/dashboard" Icon="@Icons.Material.Outlined.Dashboard">
-            Dashboard
-        </MudNavLink>
-    }
-    <MudNavLink Href="/account" Icon="@Icons.Material.Outlined.SupervisorAccount">
-        Account
+    <MudNavLink Href="/teams" Icon="@Icons.Material.Outlined.Groups">
+        My Teams
     </MudNavLink>
-    @if (_canViewAuditTrails)
-    {
-        <MudNavLink Href="/audit-trails" Icon="@Icons.Material.Outlined.Security">
-            Audit Trails
-        </MudNavLink>
-    }
-    @if (_canViewDocuments || _canViewDocumentTypes)
-    {
-        <MudListSubheader Class="mt-2 mb-n2">Document Management</MudListSubheader>
-        @if (_canViewDocuments)
-        {
-            <MudNavLink Href="/document-store" Icon="@Icons.Material.Outlined.AttachFile">
-                Document Store
-            </MudNavLink>
-        }
-        @if (_canViewDocumentTypes)
-        {
-            <MudNavLink Href="/document-types" Icon="@Icons.Material.Outlined.FileCopy">
-                Document Types
-            </MudNavLink>
-        }
-    }
+    <MudNavLink Href="/workitems" Icon="@Icons.Material.Outlined.Task">
+        Work Items
+    </MudNavLink>
+    <MudNavLink Href="/history" Icon="@Icons.Material.Outlined.History">
+        History
+    </MudNavLink>
+    
 
-    @if (_canViewUsers || _canViewRoles)
+    @if (_isAdmin)
     {
         <MudListSubheader Class="mt-2 mb-n2">Administrator</MudListSubheader>
-        @if (_canViewUsers)
-        {
-            <MudNavLink Href="/identity/users" Icon="@Icons.Material.Outlined.Person">
-                Users
-            </MudNavLink>
-        }
-        @if (_canViewRoles)
-        {
-            <MudNavLink Href="/identity/roles" Icon="@Icons.Material.Outlined.Person">Roles</MudNavLink>
-        }
-    }
-    @if (_canViewChat)
-    {
-        <MudListSubheader Class="mt-2 mb-n2">Communication</MudListSubheader>
-        <MudNavLink Href="/chat" Icon="@Icons.Material.Outlined.Chat">
-            Chat
+        <MudNavLink Href="/admin/users" Icon="@Icons.Material.Outlined.ManageAccounts">
+            Users
+        </MudNavLink>
+        <MudNavLink Href="/admin/roles" Icon="@Icons.Material.Outlined.AssignmentInd">
+            Roles
+        </MudNavLink>
+        <MudNavLink Href="/admin/teams" Icon="@Icons.Material.Outlined.People">
+            Teams
         </MudNavLink>
     }
-    @if (_canViewProducts || _canViewBrands)
-    {
-        <MudListSubheader Class="mt-2 mb-n2">Catalog Management</MudListSubheader>
-        @if (_canViewProducts)
-        {
-            <MudNavLink Href="/catalog/products" Icon="@Icons.Material.Outlined.CallToAction">
-                Products
-            </MudNavLink>
-        }
-        @if (_canViewBrands)
-        {
-            <MudNavLink Href="/catalog/brands" Icon="@Icons.Material.Outlined.CallToAction">
-                Brands
-            </MudNavLink>
-        }
-    }
+
+
+    <MudListSubheader Class="mt-2 mb-n2">Personal</MudListSubheader>
+    <MudNavLink Href="/chat" Icon="@Icons.Material.Outlined.Chat">
+        Chat
+    </MudNavLink><MudNavLink Href="/notifications" Icon="@Icons.Material.Outlined.Notifications">
+        Notifications
+    </MudNavLink>
+
+
      <MudListSubheader Class="mt-2 mb-n2">About</MudListSubheader>
+         <MudNavLink Href="https://codewithmukesh.com/blog/blazor-hero-quick-start-guide/" Target="_blank" Icon="@Icons.Material.Outlined.ReadMore">
+            Quick Start Guide
+        </MudNavLink>
+        <MudNavLink Href="/swagger/index.html" Target="_blank" Icon="@Icons.Material.Outlined.LiveHelp">
+           Swagger
+        </MudNavLink>
         <MudNavLink Href="/aboutus" Icon="@Icons.Outlined.Info">
             About Us
         </MudNavLink>
@@ -94,16 +64,8 @@
 @code {
     private ClaimsPrincipal _authenticationStateProviderUser;
 
-    private bool _canViewHangfire = true;
-    private bool _canViewDashboards= true;
-    private bool _canViewDocuments= true;
-    private bool _canViewDocumentTypes= true;
-    private bool _canViewAuditTrails= true;
-    private bool _canViewRoles= true;
-    private bool _canViewUsers= true;
-    private bool _canViewChat= true;
-    private bool _canViewProducts= true;
-    private bool _canViewBrands= true;
+    private bool _canViewHangfire = false;
+    private bool _isAdmin = true;
 
     protected override async Task OnParametersSetAsync()
     {
