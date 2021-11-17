@@ -51,19 +51,11 @@ namespace Collabile.Web.Shared
 
         private MudTheme _currentTheme;
         private bool _drawerOpen = true;
-        private bool _rightToLeft = false;
-        private async Task RightToLeftToggle()
-        {
-            var isRtl = await _clientPreferenceManager.ToggleLayoutDirection();
-            _rightToLeft = isRtl;
-            _drawerOpen = false;
-        }
 
         protected override async Task OnInitializedAsync()
         {
             _currentTheme = CollabileTheme.DefaultTheme;
             _currentTheme = await _clientPreferenceManager.GetCurrentThemeAsync();
-            _rightToLeft = await _clientPreferenceManager.IsRTL();
             _interceptor.RegisterEvent();
             hubConnection = hubConnection.TryInitialize(_navigationManager);
             await hubConnection.StartAsync();

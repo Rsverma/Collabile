@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Blazored.FluentValidation;
 using Collabile.Shared.Models;
 
-namespace Collabile.Web.Pages
+namespace Collabile.Web.Pages.Authentication
 {
     public partial class Login
     {
