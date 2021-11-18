@@ -1,5 +1,8 @@
 ﻿ @page "/projects"
- <HeroTitle Title="Projects" Description="" />
+<MudContainer Class="d-flex justify-space-between py-2 px-1 mt-6">
+    <HeroTitle Title="Projects" Description="" />
+    <AddCard Title="New project" Class="pa-2 mx-2" />
+</MudContainer>
 
 @if (!_loaded)
 {
@@ -7,7 +10,7 @@
 }
 else
 {
-    <MudText Typo="Typo.h5" Class="smaller my-4">Owned Projects</MudText>
+    <MudText Typo="Typo.h5" Class="smaller my-5">Owned Projects</MudText>
     @if (OwnedProjects.Count == 0)
     {
         <MudText Align="Align.Center">You currently don't own any projects.</MudText>
@@ -29,7 +32,7 @@ else
         </MudGrid>
     }
 
-    <MudText Typo="Typo.h5" Class="smaller my-4">Working in projects</MudText>
+    <MudText Typo="Typo.h5" Class="smaller my-5">Working in projects</MudText>
     @if (WorkingProjects.Count == 0)
     {
         <MudText Align="Align.Center">You are currently not working in any projects.</MudText>
@@ -50,7 +53,7 @@ else
             }
         </MudGrid>
     }
-    <MudText Typo="Typo.h5" Class="smaller my-4">Shareholder in projects</MudText>
+    <MudText Typo="Typo.h5" Class="smaller my-5">Shareholder in projects</MudText>
     @if (ShareHolderProjects.Count == 0)
     {
         <MudText Align="Align.Center">You are not a share holder in any project.</MudText>

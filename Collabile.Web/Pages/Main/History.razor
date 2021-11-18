@@ -1,6 +1,41 @@
 ﻿ @page "/history"
- <h3>History</h3>
+ 
+<HeroTitle Title="Recently visited items" Description="" />
 
+@if (!_loaded)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else
+{   
+    <MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
+        <MudList Clickable="true">
+            <MudDivider />
+            <MudCard >
+                <MudCardContent>
+                    <MudText Typo="Typo.body2">Add basic UI Design</MudText>
+                    <MudText Typo="Typo.caption">Project: Collabile.</MudText>
+                </MudCardContent>
+            </MudCard>                              
+            <MudDivider />
+            <MudCard Class="">
+                    <MudCardContent>
+                    <MudText Typo="Typo.body2">Add backend API</MudText>
+                    <MudText Typo="Typo.caption">Project: Collabile.</MudText>
+                </MudCardContent>
+            </MudCard>          
+        </MudList>
+    </MudPaper>
+}
 @code {
+    [Inject] private IDashboardManager DashboardManager { get; set; }
+    [Parameter] public Dictionary<string, int> Teams { get; set; } = new Dictionary<string, int>
+        { {"Development",15 }, {"Collabile",37 }, { "Core-Dev",7 } };
+    private bool _loaded;
 
+        protected override async Task OnInitializedAsync()
+        {
+            _loaded = true;
+            await Task.CompletedTask;
+        }
 }

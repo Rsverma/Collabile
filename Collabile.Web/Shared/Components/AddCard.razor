@@ -1,0 +1,11 @@
+﻿@namespace Collabile.Web.Shared.Components
+
+<MudButton>
+    <MudIcon Icon="@Icons.Material.Filled.Add" />
+    <MudText Typo="Typo.body2">@Title</MudText>
+</MudButton>
+@code
+{
+    [Parameter] public string Class { get; set; }
+    [Parameter] public string Title { get; set; }
+}

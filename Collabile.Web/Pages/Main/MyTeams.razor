@@ -1,6 +1,41 @@
 ﻿ @page "/teams"
- <h3>Teams</h3>
+<HeroTitle Title="My teams" Description="" />
+
+@if (!_loaded)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else if (Teams.Count == 0)
+{
+    <MudText Align="Align.Center">You are currently not in any teams. Contact administrator to join a team.</MudText>
+}
+else
+{
+    <MudGrid>
+        @foreach (var team in Teams)
+        {
+            <MudItem xs="12" sm="6" md="3">
+                <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
+                    <MudIcon Icon="@Icons.Material.Filled.ViewCarousel" Color="Color.Primary" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+                    <div>
+                        <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">@team.Key</MudText>
+                    <MudText Typo="Typo.h5">@team.Value Members</MudText>
+                    </div>
+                </MudPaper>
+            </MudItem>
+        }
+    </MudGrid>
+}
 
 @code {
+    [Inject] private IDashboardManager DashboardManager { get; set; }
+    [Parameter] public Dictionary<string, int> Teams { get; set; } = new Dictionary<string, int>
+        { {"Development",15 }, {"Collabile",37 }, { "Core-Dev",7 } };
+    private bool _loaded;
 
+        protected override async Task OnInitializedAsync()
+        {
+            _loaded = true;
+            await Task.CompletedTask;
+        }
 }

@@ -1,6 +1,77 @@
 ﻿ @page "/workitems"
- <h3>Work Items</h3>
+<HeroTitle Title="My work items" Description="" />
 
+@if (!_loaded)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else
+{
+        <MudGrid Justify="Justify.SpaceEvenly">
+                <MudItem xs="5">
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Ongoing issues</MudText>
+                    <MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
+                        <MudExpansionPanels>
+                            <MudExpansionPanel Text="Epics">
+                                No assigned epics
+                            </MudExpansionPanel>
+                            <MudExpansionPanel Text="Features">
+                                No assigned features
+                            </MudExpansionPanel>
+                            <MudExpansionPanel Text="Stories">
+                                <MudList Clickable="true">
+                                    <MudDivider />
+                                    <MudCard >
+                                         <MudCardContent>
+                                            <MudText Typo="Typo.body2">Add basic UI Design</MudText>
+                                            <MudText Typo="Typo.caption">Project: Collabile.</MudText>
+                                        </MudCardContent>
+                                    </MudCard>                              
+                                    <MudDivider />
+                                    <MudCard Class="">
+                                         <MudCardContent>
+                                            <MudText Typo="Typo.body2">Add backend API</MudText>
+                                            <MudText Typo="Typo.caption">Project: Collabile.</MudText>
+                                        </MudCardContent>
+                                    </MudCard>          
+                                </MudList>
+                            </MudExpansionPanel>
+                            <MudExpansionPanel Text="Tasks">
+                                No assigned tasks
+                            </MudExpansionPanel>
+                        </MudExpansionPanels>
+                    </MudPaper>
+                </MudItem>
+                <MudItem xs="5">
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Overdue issues</MudText>
+                    <MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
+                        <MudExpansionPanels>
+                            <MudExpansionPanel Text="Epics">
+                                No overdue epics
+                            </MudExpansionPanel>
+                            <MudExpansionPanel Text="Features">
+                                No overdue features
+                            </MudExpansionPanel>
+                            <MudExpansionPanel Text="Stories">
+                                No overdue stories
+                            </MudExpansionPanel>
+                            <MudExpansionPanel Text="Tasks">
+                                No overdue tasks
+                            </MudExpansionPanel>
+                        </MudExpansionPanels>
+                    </MudPaper>
+                </MudItem>
+        </MudGrid>
+}
 @code {
+    [Inject] private IDashboardManager DashboardManager { get; set; }
+    [Parameter] public Dictionary<string, int> Teams { get; set; } = new Dictionary<string, int>
+        { {"Development",15 }, {"Collabile",37 }, { "Core-Dev",7 } };
+    private bool _loaded;
 
+        protected override async Task OnInitializedAsync()
+        {
+            _loaded = true;
+            await Task.CompletedTask;
+        }
 }
