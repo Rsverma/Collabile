@@ -12,8 +12,8 @@ else
             <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
                 <MudIcon Icon="@Icons.Material.Filled.ViewCarousel" Color="Color.Primary" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
                 <div>
-                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Products</MudText>
-                    <MudText Typo="Typo.h5">@ProductCount</MudText>
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Projects</MudText>
+                    <MudText Typo="Typo.h5">@ProjectCount</MudText>
                 </div>
             </MudPaper>
         </MudItem>
@@ -21,8 +21,8 @@ else
             <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
                 <MudIcon Icon="@Icons.Material.Filled.PanoramaPhotosphereSelect" Color="Color.Secondary" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
                 <div>
-                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Brands</MudText>
-                    <MudText @bind-Value="@BrandCount" Typo="Typo.h5">@BrandCount</MudText>
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Teams</MudText>
+                    <MudText @bind-Value="@TeamCount" Typo="Typo.h5">@TeamCount</MudText>
                 </div>
             </MudPaper>
         </MudItem>
@@ -30,8 +30,8 @@ else
             <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
                 <MudIcon Icon="@Icons.Material.Filled.AttachFile" Color="Color.Primary" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
                 <div>
-                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Documents</MudText>
-                    <MudText @bind-Value="@DocumentCount" Typo="Typo.h5">@DocumentCount</MudText>
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Sprint stories</MudText>
+                    <MudText @bind-Value="@SprintStoryCount" Typo="Typo.h5">@SprintStoryCount</MudText>
                 </div>
             </MudPaper>
         </MudItem>
@@ -39,8 +39,8 @@ else
             <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
                 <MudIcon Icon="@Icons.Material.Filled.FileCopy" Color="Color.Secondary" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
                 <div>
-                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Document Types</MudText>
-                    <MudText @bind-Value="@DocumentTypeCount" Typo="Typo.h5">@DocumentTypeCount</MudText>
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Sprint tasks</MudText>
+                    <MudText @bind-Value="@SprintTotalTasks" Typo="Typo.h5">@SprintTotalTasks</MudText>
                 </div>
             </MudPaper>
         </MudItem>
@@ -48,8 +48,8 @@ else
             <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
                 <MudIcon Icon="@Icons.Material.Filled.Assignment" Color="Color.Error" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
                 <div>
-                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Document Extended Attributes</MudText>
-                    <MudText @bind-Value="@DocumentExtendedAttributeCount" Typo="Typo.h5">@DocumentExtendedAttributeCount</MudText>
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Completed tasks</MudText>
+                    <MudText @bind-Value="@SprintCompletedTasks" Typo="Typo.h5">@SprintCompletedTasks</MudText>
                 </div>
             </MudPaper>
         </MudItem>
@@ -57,8 +57,8 @@ else
             <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
                 <MudIcon Icon="@Icons.Material.Filled.Face" Color="Color.Success" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
                 <div>
-                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Registered Users</MudText>
-                    <MudText Typo="Typo.h5">@UserCount</MudText>
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Overdue Tasks</MudText>
+                    <MudText Typo="Typo.h5">@OverdueIssues</MudText>
                 </div>
             </MudPaper>
         </MudItem>
@@ -66,14 +66,14 @@ else
             <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
                 <MudIcon Icon="@Icons.Material.Filled.Groups" Color="Color.Warning" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
                 <div>
-                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Registered Roles</MudText>
-                    <MudText Typo="Typo.h5">@RoleCount</MudText>
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">In progress tasks</MudText>
+                    <MudText Typo="Typo.h5">@InProgressTasks</MudText>
                 </div>
             </MudPaper>
         </MudItem>
         <MudItem xs="12" sm="8">
             <MudPaper Elevation="25" Class="pa-4" Style="height:400px;">
-                <MudChart ChartType="ChartType.Bar" ChartSeries="@_dataEnterBarChartSeries" XAxisLabels="@_dataEnterBarChartXAxisLabels" Width="100%" Height="300px"></MudChart>
+                <MudChart ChartOptions ="@_chartOptions" ChartType="ChartType.Bar" ChartSeries="@_dataEnterBarChartSeries" XAxisLabels="@_dataEnterBarChartXAxisLabels" Width="100%" Height="300px"></MudChart>
             </MudPaper>
         </MudItem>
         <MudItem xs="12" sm="4">

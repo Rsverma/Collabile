@@ -29,7 +29,6 @@ namespace Collabile.Api.Services
     public class UserService : IUserService
     {
         private readonly UserManager<CollabileUser> _userManager;
-        private readonly RoleManager<CollabileRole> _roleManager;
         //private readonly IMailService _mailService;
         private readonly IExcelService _excelService;
         private readonly ICurrentUserService _currentUserService;
@@ -44,7 +43,6 @@ namespace Collabile.Api.Services
         {
             _userManager = userManager;
             _mapper = mapper;
-            _roleManager = roleManager;
             _excelService = excelService;
             _currentUserService = currentUserService;
         }
@@ -169,33 +167,6 @@ namespace Collabile.Api.Services
             return await Result.SuccessAsync();
         }
 
-        public async Task<IResult<UserRolesResponse>> GetRolesAsync(string userId)
-        {
-            var viewModel = new List<UserRoleModel>();
-            var user = await _userManager.FindByIdAsync(userId);
-            var roles = _roleManager.Roles.ToList();
-
-            foreach (var role in roles)
-            {
-                var userRolesViewModel = new UserRoleModel
-                {
-                    RoleName = role.Name,
-                    RoleDescription = role.Description
-                };
-                if (await _userManager.IsInRoleAsync(user, role.Name))
-                {
-                    userRolesViewModel.Selected = true;
-                }
-                else
-                {
-                    userRolesViewModel.Selected = false;
-                }
-                viewModel.Add(userRolesViewModel);
-            }
-            var result = new UserRolesResponse { UserRoles = viewModel };
-            return await Result<UserRolesResponse>.SuccessAsync(result);
-        }
-
         public async Task<IResult> UpdateRolesAsync(UpdateUserRolesRequest request)
         {
             var user = await _userManager.FindByIdAsync(request.UserId);
@@ -206,13 +177,7 @@ namespace Collabile.Api.Services
             var currentUser = await _userManager.FindByIdAsync(_currentUserService.UserId);
             if (!await _userManager.IsInRoleAsync(currentUser, RoleConstants.AdministratorRole))
             {
-                var tryToAddAdministratorRole = selectedRoles
-                    .Any(x => x.RoleName == RoleConstants.AdministratorRole);
-                var userHasAdministratorRole = roles.Any(x => x == RoleConstants.AdministratorRole);
-                if (tryToAddAdministratorRole && !userHasAdministratorRole || !tryToAddAdministratorRole && userHasAdministratorRole)
-                {
-                    return await Result.FailAsync("Not Allowed to add or delete Administrator Role if you have not this role.");
-                }
+                return await Result.FailAsync("Non admin users are not allowed to change roles.");
             }
 
             var result = await _userManager.RemoveFromRolesAsync(user, roles);

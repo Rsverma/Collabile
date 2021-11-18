@@ -62,7 +62,7 @@
     <Folder Include="dbo\Tables" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\User.sql" />
+    <Build Include="dbo\Tables\CollabileUser.sql" />
     <Build Include="dbo\Tables\Task.sql" />
     <Build Include="dbo\StoredProdedures\spUser_Delete.sql" />
     <Build Include="dbo\StoredProdedures\spUser_GetAll.sql" />

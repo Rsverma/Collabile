@@ -1,6 +1,74 @@
 ﻿ @page "/projects"
- <h3>Projects</h3>
+ <HeroTitle Title="Projects" Description="" />
 
-@code {
+@if (!_loaded)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else
+{
+    <MudText Typo="Typo.h5" Class="smaller my-4">Owned Projects</MudText>
+    @if (OwnedProjects.Count == 0)
+    {
+        <MudText Align="Align.Center">You currently don't own any projects.</MudText>
+    }
+    else
+    {
+        <MudGrid>
+            @foreach (string proj in OwnedProjects)
+            {
+                <MudItem xs="12" sm="6" md="3">
+                    <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
+                        <MudIcon Icon="@Icons.Material.Filled.ViewCarousel" Color="Color.Primary" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+                        <div>
+                            <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">@proj</MudText>
+                        </div>
+                    </MudPaper>
+                </MudItem>
+            }
+        </MudGrid>
+    }
 
+    <MudText Typo="Typo.h5" Class="smaller my-4">Working in projects</MudText>
+    @if (WorkingProjects.Count == 0)
+    {
+        <MudText Align="Align.Center">You are currently not working in any projects.</MudText>
+    }
+    else
+    {
+         <MudGrid>
+            @foreach (string proj in WorkingProjects)
+            {
+                <MudItem xs="12" sm="6" md="3">
+                    <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
+                        <MudIcon Icon="@Icons.Material.Filled.ViewCarousel" Color="Color.Primary" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+                        <div>
+                            <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">@proj</MudText>
+                        </div>
+                    </MudPaper>
+                </MudItem>
+            }
+        </MudGrid>
+    }
+    <MudText Typo="Typo.h5" Class="smaller my-4">Shareholder in projects</MudText>
+    @if (ShareHolderProjects.Count == 0)
+    {
+        <MudText Align="Align.Center">You are not a share holder in any project.</MudText>
+    }
+    else
+    {
+         <MudGrid>
+            @foreach (string proj in ShareHolderProjects)
+            {
+                <MudItem xs="12" sm="6" md="3">
+                    <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
+                        <MudIcon Icon="@Icons.Material.Filled.ViewCarousel" Color="Color.Primary" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+                        <div>
+                            <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">@proj</MudText>
+                        </div>
+                    </MudPaper>
+                </MudItem>
+            }
+        </MudGrid>
+    }
 }

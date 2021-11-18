@@ -53,13 +53,13 @@ namespace Collabile.Api.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Status 200 OK</returns>
-        [Authorize(Policy = Permissions.Users.View)]
-        [HttpGet("roles/{id}")]
-        public async Task<IActionResult> GetRolesAsync(string id)
-        {
-            var userRoles = await _userService.GetRolesAsync(id);
-            return Ok(userRoles);
-        }
+        //[Authorize(Policy = Permissions.Users.View)]
+        //[HttpGet("roles/{id}")]
+        //public async Task<IActionResult> GetRolesAsync(string id)
+        //{
+        //    var userRoles = await _userService.GetRolesAsync(id);
+        //    return Ok(userRoles);
+        //}
 
         /// <summary>
         /// Update Roles for User

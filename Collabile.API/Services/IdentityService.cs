@@ -19,7 +19,6 @@ namespace Collabile.Api.Services
     public class IdentityService : ITokenService
     {
         private readonly UserManager<CollabileUser> _userManager;
-        private readonly RoleManager<CollabileRole> _roleManager;
         private readonly AppConfiguration _appConfig;
 
         public IdentityService(
@@ -27,7 +26,6 @@ namespace Collabile.Api.Services
             IOptions<AppConfiguration> appConfig)
         {
             _userManager = userManager;
-            _roleManager = roleManager;
             _appConfig = appConfig.Value;
         }
 
@@ -93,13 +91,9 @@ namespace Collabile.Api.Services
             var userClaims = await _userManager.GetClaimsAsync(user);
             var roles = await _userManager.GetRolesAsync(user);
             var roleClaims = new List<Claim>();
-            var permissionClaims = new List<Claim>();
             foreach (var role in roles)
             {
                 roleClaims.Add(new Claim(ClaimTypes.Role, role));
-                var thisRole = await _roleManager.FindByNameAsync(role);
-                var allPermissionsForThisRoles = await _roleManager.GetClaimsAsync(thisRole);
-                permissionClaims.AddRange(allPermissionsForThisRoles);
             }
 
             var claims = new List<Claim>
@@ -111,8 +105,7 @@ namespace Collabile.Api.Services
                 new(ClaimTypes.MobilePhone, user.PhoneNumber ?? string.Empty)
             }
             .Union(userClaims)
-            .Union(roleClaims)
-            .Union(permissionClaims);
+            .Union(roleClaims);
 
             return claims;
         }

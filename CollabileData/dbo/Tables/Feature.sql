@@ -1,15 +1,16 @@
 ﻿CREATE TABLE [dbo].[Feature]
 (
-	[Id] INT NOT NULL PRIMARY KEY IdENTITY,
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY default NEWID(),
 	[Title] NVARCHAR(500) NOT NULL,
 	[Description] NVARCHAR(MAX) NOT NULL,
 	[Type] INT NOT NULL,
 	[State] INT NOT NULL,
-	[ParentEpic] INT NULL,
+	[ParentEpic] UNIQUEIDENTIFIER NULL,
 	[Release] INT NULL,
 	[Priority] INT NOT NULL,
 	[BusinessValue] NVARCHAR(20) NOT NULL,
-	[Assignee] NVARCHAR(50) NOT NULL,
-	CONSTRAINT FK_User_Feature_Assignee FOREIGN KEY (Assignee) REFERENCES [User] (Username),
+	[Assignee] UNIQUEIDENTIFIER NOT NULL,
+	CONSTRAINT FK_Epic_Feature FOREIGN KEY (ParentEpic) REFERENCES [Epic] (Id),
+	CONSTRAINT FK_User_Feature_Assignee FOREIGN KEY (Assignee) REFERENCES [CollabileUser] (Id),
 	CONSTRAINT FK_BusinessValue_Feature FOREIGN KEY (BusinessValue) REFERENCES [BusinessValue] ([Name])
 )

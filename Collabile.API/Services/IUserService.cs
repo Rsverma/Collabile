@@ -19,8 +19,6 @@ namespace Collabile.Api.Services
 
         Task<IResult> ToggleUserStatusAsync(ToggleUserStatusRequest request);
 
-        Task<IResult<UserRolesResponse>> GetRolesAsync(string id);
-
         Task<IResult> UpdateRolesAsync(UpdateUserRolesRequest request);
 
         Task<IResult<string>> ConfirmEmailAsync(string userId, string code);
