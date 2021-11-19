@@ -1,0 +1,25 @@
+﻿@namespace Collabile.Web.Shared.Dialogs
+<MudDialog>
+    <TitleContent>
+        <MudText Typo="Typo.h6">
+            <MudIcon Icon="@Icons.Material.Filled.AdminPanelSettings" Class="mr-3 mb-n1" />
+            System Administrators
+        </MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudText>Here is the list of system administrators for this installation of Collabile.</MudText>
+        <MudList Dense="true">
+                <MudListItem Text="Ramesh Verma" Icon="@Icons.Filled.Bookmark" />
+                <MudListItem Text="John Doe" Icon="@Icons.Filled.Bookmark" />
+                <MudListItem Text="Jane Doe" Icon="@Icons.Filled.Bookmark" />
+            </MudList>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="OK">OK</MudButton>
+    </DialogActions>
+</MudDialog>
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    void OK() => MudDialog.Cancel();
+}

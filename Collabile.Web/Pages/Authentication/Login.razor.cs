@@ -12,6 +12,7 @@ namespace Collabile.Web.Pages.Authentication
         private FluentValidationValidator _fluentValidationValidator;
         private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
         private TokenRequest _tokenModel = new();
+        private bool _loadingAdmins = false;
 
         protected override async Task OnInitializedAsync()
         {
@@ -57,6 +58,12 @@ namespace Collabile.Web.Pages.Authentication
                 _passwordInputIcon = Icons.Material.Filled.Visibility;
                 _passwordInput = InputType.Text;
             }
+        }
+        async Task ShowAdmins()
+        {
+            _dialogService.Show<Shared.Dialogs.Administrators>();
+            await Task.CompletedTask;
+         
         }
     }
 }
