@@ -7,7 +7,7 @@ using Collabile.Shared.Constants;
 
 namespace Collabile.Web.Pages.Admin
 {
-    public partial class ManageUsers
+    public partial class ManageProjects
     {
         private List<UserResponse> _userList = new();
         private UserResponse _user = new();
@@ -17,19 +17,19 @@ namespace Collabile.Web.Pages.Admin
         private bool _bordered = false;
 
         private ClaimsPrincipal _currentUser;
-        private bool _canCreateUsers = true;
-        private bool _canSearchUsers = true;
-        private bool _canExportUsers = true;
-        private bool _canViewRoles = true;
+        private bool _canCreateUsers;
+        private bool _canSearchUsers;
+        private bool _canExportUsers;
+        private bool _canViewRoles;
         private bool _loaded;
 
         protected override async Task OnInitializedAsync()
         {
             _currentUser = await _authenticationManager.CurrentUser();
-            //_canCreateUsers = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Create)).Succeeded;
-            //_canSearchUsers = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Search)).Succeeded;
-            //_canExportUsers = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Export)).Succeeded;
-            //_canViewRoles = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Roles.View)).Succeeded;
+            _canCreateUsers = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Create)).Succeeded;
+            _canSearchUsers = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Search)).Succeeded;
+            _canExportUsers = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Export)).Succeeded;
+            _canViewRoles = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Roles.View)).Succeeded;
 
             await GetUsersAsync();
             _loaded = true;

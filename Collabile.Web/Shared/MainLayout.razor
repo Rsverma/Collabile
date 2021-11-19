@@ -32,6 +32,9 @@
                             <MudMenuItem Link="https://www.linkedin.com/in/rsverma333" Target="_blank">LinkedIn</MudMenuItem>
                             <MudMenuItem Link="https://codewithrsv.com/" Target="_blank">Website</MudMenuItem>
                         </MudMenu>
+                            <MudMenu EndIcon="@Icons.Material.Filled.Notifications" Color="Color.Inherit" Dense="true" Direction="Direction.Bottom" OffsetY="true">
+                                <Notifications />
+                            </MudMenu>
                         <MudTooltip Text="Toggle Dark Mode">
                             <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="@((e) => DarkMode())" />
                         </MudTooltip>
@@ -40,6 +43,9 @@
                         </MudTooltip>
                     </MudHidden>
                     <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+                        <MudMenu EndIcon="@Icons.Material.Filled.Notifications" Color="Color.Inherit" Dense="true" Direction="Direction.Bottom" OffsetY="true">
+                            <Notifications />
+                        </MudMenu>
                         <MudMenu Icon="@Icons.Filled.Settings" Color="Color.Inherit" Dense="true" Direction="Direction.Right" OffsetY="true">
                             <div class="px-2">
                                 <MudTooltip Text="Toggle Dark Mode">

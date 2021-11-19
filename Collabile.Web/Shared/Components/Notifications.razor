@@ -1,0 +1,33 @@
+﻿@namespace Collabile.Web.Shared.Components
+
+<MudText Typo="Typo.h5" Align="Align.Center" Color="Color.Primary" Class="mb-2">Recent notifications</MudText>
+
+@if (!_loaded)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else
+{   
+    <MudDivider />
+    <MudMenuItem Link="https://www.youtube.com/channel/UCHXfV0ENFtcM-rBEe3FyvAg" Target="_blank">
+        <MudText Typo="Typo.body2">Updated: Add design layout for Nav menu pages.</MudText>
+        <MudText Typo="Typo.caption">Status: Completed.</MudText>    
+    </MudMenuItem>
+    <MudDivider />
+    <MudMenuItem Link="https://www.youtube.com/channel/UCHXfV0ENFtcM-rBEe3FyvAg" Target="_blank">
+        <MudText Typo="Typo.body2">Updated: Add design layout for Nav menu pages.</MudText>
+        <MudText Typo="Typo.caption">Status: Completed.</MudText>  
+    </MudMenuItem>
+}
+@code {
+    [Inject] private IDashboardManager DashboardManager { get; set; }
+    [Parameter] public Dictionary<string, int> Notifs { get; set; } = new Dictionary<string, int>
+        { {"Development",15 }, {"Collabile",37 }, { "Core-Dev",7 } };
+    private bool _loaded;
+
+        protected override async Task OnInitializedAsync()
+        {
+            _loaded = true;
+            await Task.CompletedTask;
+        }
+}
