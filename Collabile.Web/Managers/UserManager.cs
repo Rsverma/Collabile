@@ -30,6 +30,12 @@ namespace Collabile.Web.Managers
             return await response.ToResult<UserResponse>();
         }
 
+        public async Task<IResult> RegisterUserAsync(RegisterRequest request)
+        {
+            var response = await _httpClient.PostAsJsonAsync(UserEndpoints.Register, request);
+            return await response.ToResult();
+        }
+
         public async Task<IResult> ToggleUserStatusAsync(ToggleUserStatusRequest request)
         {
             var response = await _httpClient.PostAsJsonAsync(UserEndpoints.ToggleUserStatus, request);
