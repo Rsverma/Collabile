@@ -129,17 +129,17 @@ namespace Collabile.Api.Services
         {
             try
             {
-                CollabileUser user = _userManager.Users.Where(u => u.Id == userId).FirstOrDefault();
-                UserResponse resp = new UserResponse 
+                CollabileUser user = await _userManager.FindByIdAsync(userId);
+                UserResponse resp = new UserResponse
                 {
+                    Id = user.Id,
                     Email = user.Email,
                     EmailConfirmed = user.EmailConfirmed,
                     FirstName = user.FirstName,
-                    Id = user.Id,
-                     IsActive = user.IsActive,
-                     LastName = user.LastName,  
-                     PhoneNumber = user.PhoneNumber,
-                     UserName = user.UserName
+                    IsActive = !user.IsDeleted,
+                    LastName = user.LastName,  
+                    PhoneNumber = user.PhoneNumber,
+                    UserName = user.UserName
                 };
 
                 //var result = _mapper.Map<CollabileUser, UserResponse>(user);

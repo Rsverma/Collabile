@@ -16,7 +16,7 @@ namespace Collabile.Api.Services
 
         public void DeleteTask(int taskId, int userId)
         {
-            _ = _sql.SaveData("dbo.spTask_Delete", new { Id = taskId, userId });
+            _ = _sql.SaveDataAsync("dbo.spTask_Delete", new { Id = taskId, userId });
         }
 
         public List<WorkTask> GetAllTasks(int userId)
@@ -32,7 +32,7 @@ namespace Collabile.Api.Services
 
         public void UpdateTask(WorkTask task)
         {
-            _ = _sql.SaveData("dbo.spTask_Update", task);
+            _ = _sql.SaveDataAsync("dbo.spTask_Update", task);
         }
     }
 }

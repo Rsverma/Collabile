@@ -127,7 +127,7 @@ namespace Collabile.Api.Extensions
 
         internal static IServiceCollection AddIdentity(this IServiceCollection services)
         {
-            services.AddTransient<IUserStore<CollabileUser>, DummyUserStore>();
+            services.AddTransient<IUserStore<CollabileUser>, UserStore>();
             services.AddTransient<IRoleStore<CollabileRole>, DummyRoleStore>();
             services
                 .AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>()

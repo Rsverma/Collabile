@@ -21,6 +21,8 @@ namespace Collabile.DataAccess.Models.Identity
         public DateTime? DeletedOn { get; set; }
         public bool IsActive { get; set; }
         public string RefreshToken { get; set; }
+        public string UserRole { get; set; }
+        
         public DateTime RefreshTokenExpiryTime { get; set; }
         public virtual ICollection<ChatHistory<CollabileUser>> ChatHistoryFromUsers { get; set; }
         public virtual ICollection<ChatHistory<CollabileUser>> ChatHistoryToUsers { get; set; }

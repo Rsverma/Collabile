@@ -10,7 +10,7 @@ namespace Collabile.Api.DataAccess
 
         List<T> LoadData<T, U>(string storedProcedure, U parameters);
 
-        T LoadSingle<T, U>(string storedProcedure, U parameters);
+        Task<T> LoadSingleAsync<T, U>(string storedProcedure, U parameters);
 
         SqlMapper.GridReader LoadMultiple<U>(string storedProcedure, U parameters);
 
@@ -18,7 +18,7 @@ namespace Collabile.Api.DataAccess
 
         void RollbackTransaction(IDbConnection connection, IDbTransaction transaction);
 
-        int SaveData<T>(string storedProcedure, T parameters);
+        Task<int> SaveDataAsync<T>(string storedProcedure, T parameters);
 
         int SaveDataInTransaction<T>(string storedProcedure, T parameters, IDbConnection connection, IDbTransaction transaction);
 

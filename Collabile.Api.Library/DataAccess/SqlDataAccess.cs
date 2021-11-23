@@ -27,10 +27,10 @@ public class SqlDataAccess : ISqlDataAccess
         return rows;
     }
 
-    public T LoadSingle<T, U>(string storedProcedure, U parameters)
+    public async Task<T> LoadSingleAsync<T, U>(string storedProcedure, U parameters)
     {
         using IDbConnection connection = new SqlConnection(connectionString);
-        T item = connection.QuerySingleOrDefault<T>(storedProcedure, parameters,
+        T item = await connection.QuerySingleOrDefaultAsync<T>(storedProcedure, parameters,
             commandType: CommandType.StoredProcedure);
         return item;
     }
@@ -43,10 +43,10 @@ public class SqlDataAccess : ISqlDataAccess
         return reader;
     }
 
-    public int SaveData<T>(string storedProcedure, T parameters)
+    public async Task<int> SaveDataAsync<T>(string storedProcedure, T parameters)
     {
         using IDbConnection connection = new SqlConnection(connectionString);
-        return connection.Execute(storedProcedure, parameters,
+        return await connection.ExecuteAsync(storedProcedure, parameters,
             commandType: CommandType.StoredProcedure);
     }
 

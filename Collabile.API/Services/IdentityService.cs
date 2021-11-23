@@ -21,9 +21,7 @@ namespace Collabile.Api.Services
         private readonly UserManager<CollabileUser> _userManager;
         private readonly AppConfiguration _appConfig;
 
-        public IdentityService(
-            UserManager<CollabileUser> userManager, RoleManager<CollabileRole> roleManager,
-            IOptions<AppConfiguration> appConfig)
+        public IdentityService(UserManager<CollabileUser> userManager, IOptions<AppConfiguration> appConfig)
         {
             _userManager = userManager;
             _appConfig = appConfig.Value;
@@ -36,7 +34,7 @@ namespace Collabile.Api.Services
             {
                 return await Result<TokenResponse>.FailAsync("User Not Found.");
             }
-            if (!user.IsActive)
+            if (user.IsDeleted)
             {
                 return await Result<TokenResponse>.FailAsync("User Not Active. Please contact the administrator.");
             }
@@ -52,7 +50,7 @@ namespace Collabile.Api.Services
 
             user.RefreshToken = GenerateRefreshToken();
             user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);
-            await _userManager.UpdateAsync(user);
+            //await _userManager.UpdateAsync(user);
 
             var token = await GenerateJwtAsync(user);
             var response = new TokenResponse { Token = token, RefreshToken = user.RefreshToken };
@@ -89,13 +87,8 @@ namespace Collabile.Api.Services
         private async Task<IEnumerable<Claim>> GetClaimsAsync(CollabileUser user)
         {
             var userClaims = await _userManager.GetClaimsAsync(user);
-            var roles = await _userManager.GetRolesAsync(user);
-            var roleClaims = new List<Claim>();
-            foreach (var role in roles)
-            {
-                roleClaims.Add(new Claim(ClaimTypes.Role, role));
-            }
-
+            userClaims.Add(new Claim(ClaimTypes.Role, user.UserRole));
+            
             var claims = new List<Claim>
             {
                 new(ClaimTypes.NameIdentifier, user.Id),
@@ -104,8 +97,7 @@ namespace Collabile.Api.Services
                 new(ClaimTypes.Surname, user.LastName),
                 new(ClaimTypes.MobilePhone, user.PhoneNumber ?? string.Empty)
             }
-            .Union(userClaims)
-            .Union(roleClaims);
+            .Union(userClaims);
 
             return claims;
         }

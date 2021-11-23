@@ -3,16 +3,47 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Dapper;
 using System.Data.SqlClient;
+using System.Security.Claims;
+using Collabile.Api.DataAccess;
+using System.Data;
 
 namespace Collabile.DataAccess.Stores
 {
-    public class UserStore : IUserStore<CollabileUser>, IUserEmailStore<CollabileUser>, IUserPasswordStore<CollabileUser>
+    public class UserStore : IUserStore<CollabileUser>, IUserEmailStore<CollabileUser>, IUserPasswordStore<CollabileUser>, IUserClaimStore<CollabileUser>
     {
         private readonly string _connectionString;
+
         public UserStore(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
+
+        public Task AddClaimsAsync(CollabileUser user, IEnumerable<Claim> claims, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IList<Claim>> GetClaimsAsync(CollabileUser user, CancellationToken cancellationToken)
+        {
+            IList<Claim> claims = new List<Claim>();
+            return Task.FromResult(claims);
+        }
+
+        public Task<IList<CollabileUser>> GetUsersForClaimAsync(Claim claim, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task RemoveClaimsAsync(CollabileUser user, IEnumerable<Claim> claims, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task ReplaceClaimAsync(CollabileUser user, Claim claim, Claim newClaim, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IdentityResult> CreateAsync(CollabileUser user, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -20,12 +51,17 @@ namespace Collabile.DataAccess.Stores
             using (var connection = new SqlConnection(_connectionString))
             {
                 await connection.OpenAsync(cancellationToken);
-                user.Id = await connection.QuerySingleAsync<string>($@"INSERT INTO [CollabileUser] ([UserName], [NormalizedUserName], [Email],
-                [NormalizedEmail], [EmailConfirmed], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled])
-                VALUES (@{nameof(CollabileUser.UserName)}, @{nameof(CollabileUser.NormalizedUserName)}, @{nameof(CollabileUser.Email)},
-                @{nameof(CollabileUser.NormalizedEmail)}, @{nameof(CollabileUser.EmailConfirmed)}, @{nameof(CollabileUser.PasswordHash)},
-                @{nameof(CollabileUser.PhoneNumber)}, @{nameof(CollabileUser.PhoneNumberConfirmed)}, @{nameof(CollabileUser.TwoFactorEnabled)});
-                SELECT CAST(SCOPE_IDENTITY() as int)", user);
+                await connection.ExecuteAsync("dbo.spUser_Insert", new
+                {
+                    user.Id,
+                    user.UserName,
+                    user.Email,
+                    user.PasswordHash,
+                    user.FirstName,
+                    user.LastName,
+                    user.CreatedBy,
+                    user.LastModifiedBy
+                },commandType: CommandType.StoredProcedure);
             }
 
             return IdentityResult.Success;
@@ -38,7 +74,8 @@ namespace Collabile.DataAccess.Stores
             using (var connection = new SqlConnection(_connectionString))
             {
                 await connection.OpenAsync(cancellationToken);
-                await connection.ExecuteAsync($"DELETE FROM [CollabileUser] WHERE [Id] = @{nameof(CollabileUser.Id)}", user);
+                await connection.ExecuteAsync($@"DELETE FROM [CollabileUser]
+                WHERE [Id] = @{nameof(user.Id)}", new { user.Id });
             }
 
             return IdentityResult.Success;
@@ -46,7 +83,7 @@ namespace Collabile.DataAccess.Stores
 
         public void Dispose()
         {
-            //throw new NotImplementedException();
+            
         }
 
         public async Task<CollabileUser> FindByEmailAsync(string normalizedEmail, CancellationToken cancellationToken)
@@ -57,7 +94,7 @@ namespace Collabile.DataAccess.Stores
             {
                 await connection.OpenAsync(cancellationToken);
                 return await connection.QuerySingleOrDefaultAsync<CollabileUser>($@"SELECT * FROM [CollabileUser]
-                WHERE [NormalizedEmail] = @{nameof(normalizedEmail)}", new { normalizedEmail });
+                WHERE [Email] = @{nameof(normalizedEmail)}", new { normalizedEmail });
             }
         }
 
@@ -97,12 +134,12 @@ namespace Collabile.DataAccess.Stores
 
         public Task<string> GetNormalizedEmailAsync(CollabileUser user, CancellationToken cancellationToken)
         {
-            return Task.FromResult(user.NormalizedEmail);
+            return Task.FromResult(user.Email.ToUpper());
         }
 
         public Task<string> GetNormalizedUserNameAsync(CollabileUser user, CancellationToken cancellationToken)
         {
-            return Task.FromResult(user.NormalizedUserName);
+            return Task.FromResult(user.UserName.ToUpper());
         }
 
         public Task<string> GetPasswordHashAsync(CollabileUser user, CancellationToken cancellationToken)
@@ -122,43 +159,73 @@ namespace Collabile.DataAccess.Stores
 
         public Task<bool> HasPasswordAsync(CollabileUser user, CancellationToken cancellationToken)
         {
-            return Task.FromResult(user.PasswordHash != null);
+            return Task.FromResult(!string.IsNullOrEmpty(user.PasswordHash));
         }
 
-        public Task SetEmailAsync(CollabileUser user, string email, CancellationToken cancellationToken)
+        public async Task SetEmailAsync(CollabileUser user, string email, CancellationToken cancellationToken)
         {
-            user.Email = email;
-            return Task.FromResult(0);
+            cancellationToken.ThrowIfCancellationRequested();
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                await connection.OpenAsync(cancellationToken);
+                await connection.ExecuteAsync($@"UPDATE [CollabileUser] SET
+                [Email] = @{nameof(CollabileUser.Email)},
+                [LastModifiedBy] = @{nameof(CollabileUser.LastModifiedBy)},
+                [LastModifiedOn] = @{nameof(CollabileUser.LastModifiedOn)},
+                WHERE [Id] = @{nameof(CollabileUser.Id)}", user);
+            }
         }
 
-        public Task SetEmailConfirmedAsync(CollabileUser user, bool confirmed, CancellationToken cancellationToken)
+        public async Task SetEmailConfirmedAsync(CollabileUser user, bool confirmed, CancellationToken cancellationToken)
         {
-            user.EmailConfirmed = confirmed;
-            return Task.FromResult(0);
+            cancellationToken.ThrowIfCancellationRequested();
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                await connection.OpenAsync(cancellationToken);
+                await connection.ExecuteAsync($@"UPDATE [CollabileUser] SET
+                [EmailConfirmed] = @{nameof(CollabileUser.EmailConfirmed)},
+                [LastModifiedBy] = @{nameof(CollabileUser.LastModifiedBy)},
+                [LastModifiedOn] = @{nameof(CollabileUser.LastModifiedOn)},
+                WHERE [Id] = @{nameof(CollabileUser.Id)}", user);
+            }
         }
 
         public Task SetNormalizedEmailAsync(CollabileUser user, string normalizedEmail, CancellationToken cancellationToken)
         {
-            user.NormalizedEmail = normalizedEmail;
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
 
         public Task SetNormalizedUserNameAsync(CollabileUser user, string normalizedName, CancellationToken cancellationToken)
         {
-            user.NormalizedUserName = normalizedName;
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
 
-        public Task SetPasswordHashAsync(CollabileUser user, string passwordHash, CancellationToken cancellationToken)
+        public async Task SetPasswordHashAsync(CollabileUser user, string passwordHash, CancellationToken cancellationToken)
         {
-            user.PasswordHash = passwordHash;
-            return Task.FromResult(0);
+            cancellationToken.ThrowIfCancellationRequested();
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                await connection.OpenAsync(cancellationToken);
+                await connection.ExecuteAsync($@"UPDATE [CollabileUser] SET
+                [PasswordHash] = @{nameof(CollabileUser.PasswordHash)},
+                [LastModifiedBy] = @{nameof(CollabileUser.LastModifiedBy)},
+                [LastModifiedOn] = @{nameof(CollabileUser.LastModifiedOn)},
+                WHERE [Id] = @{nameof(CollabileUser.Id)}", user);
+            }
         }
 
-        public Task SetUserNameAsync(CollabileUser user, string userName, CancellationToken cancellationToken)
+        public async Task SetUserNameAsync(CollabileUser user, string userName, CancellationToken cancellationToken)
         {
-            user.UserName = userName;
-            return Task.FromResult(0);
+            cancellationToken.ThrowIfCancellationRequested();
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                await connection.OpenAsync(cancellationToken);
+                await connection.ExecuteAsync($@"UPDATE [CollabileUser] SET
+                [UserName] = @{nameof(CollabileUser.UserName)},
+                [LastModifiedBy] = @{nameof(CollabileUser.LastModifiedBy)},
+                [LastModifiedOn] = @{nameof(CollabileUser.LastModifiedOn)},
+                WHERE [Id] = @{nameof(CollabileUser.Id)}", user);
+            }
         }
 
         public async Task<IdentityResult> UpdateAsync(CollabileUser user, CancellationToken cancellationToken)
@@ -169,15 +236,12 @@ namespace Collabile.DataAccess.Stores
             {
                 await connection.OpenAsync(cancellationToken);
                 await connection.ExecuteAsync($@"UPDATE [CollabileUser] SET
-                [UserName] = @{nameof(CollabileUser.UserName)},
-                [NormalizedUserName] = @{nameof(CollabileUser.NormalizedUserName)},
+                [FirstName] = @{nameof(CollabileUser.FirstName)},
+                [LastName] = @{nameof(CollabileUser.LastName)},
                 [Email] = @{nameof(CollabileUser.Email)},
-                [NormalizedEmail] = @{nameof(CollabileUser.NormalizedEmail)},
-                [EmailConfirmed] = @{nameof(CollabileUser.EmailConfirmed)},
-                [PasswordHash] = @{nameof(CollabileUser.PasswordHash)},
                 [PhoneNumber] = @{nameof(CollabileUser.PhoneNumber)},
-                [PhoneNumberConfirmed] = @{nameof(CollabileUser.PhoneNumberConfirmed)},
-                [TwoFactorEnabled] = @{nameof(CollabileUser.TwoFactorEnabled)}
+                [LastModifiedBy] = @{nameof(CollabileUser.LastModifiedBy)},
+                [LastModifiedOn] = @{nameof(CollabileUser.LastModifiedOn)},
                 WHERE [Id] = @{nameof(CollabileUser.Id)}", user);
             }
 
