@@ -10,8 +10,8 @@
 	[StartDate] DATETIME2 NULL,
 	[DueDate] DATETIME2 NULL,
 	[CreateDate] DATETIME2 NOT NULL,
-	[Assignee] UNIQUEIDENTIFIER NULL,
-	[Reporter] UNIQUEIDENTIFIER NOT NULL,
+	[Assignee] VARCHAR(36) NULL,
+	[Reporter] VARCHAR(36) NOT NULL,
 	CONSTRAINT FK_Story_Task FOREIGN KEY (ParentStory) REFERENCES [Story] (Id),
 	CONSTRAINT FK_User_Task_Assignee FOREIGN KEY (Assignee) REFERENCES [CollabileUser] (Id),
 	CONSTRAINT FK_User_Task_Reporter FOREIGN KEY (Reporter) REFERENCES [CollabileUser] (Id)
