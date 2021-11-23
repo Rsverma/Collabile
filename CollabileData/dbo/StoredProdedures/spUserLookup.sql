@@ -4,7 +4,7 @@ AS
 Begin
 	set nocount on;
 
-	SELECT [Password], [UserRole]
-	from [dbo].[User]
+	SELECT [PasswordHash], [UserRole]
+	from [dbo].[CollabileUser]
 	where Username = @Username
 End

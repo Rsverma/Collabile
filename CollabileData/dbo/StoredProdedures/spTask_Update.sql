@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[spTask_Update]
-	@Id INT,
+	@Id uniqueidentifier,
     @Title NVARCHAR(500),
     @Description NVARCHAR(MAX),
     @State INT,
@@ -7,8 +7,8 @@
     @StartDate DATETIME2,
     @DueDate DATETIME2,
     @CreateDate DATETIME2,
-    @Assignee INT,
-    @Reporter INT
+    @Assignee uniqueidentifier,
+    @Reporter uniqueidentifier
 AS
 	Update [Task]
 	SET [Title] = @Title,

@@ -7,8 +7,8 @@
         @StartDate DATETIME2,
         @DueDate DATETIME2,
         @CreateDate DATETIME2,
-        @Assignee INT,
-        @Reporter INT
+        @Assignee uniqueidentifier,
+        @Reporter uniqueidentifier
 AS
 BEGIN
 	SET NOCOUNT ON;

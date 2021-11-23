@@ -2,7 +2,7 @@
 AS
 Begin
 	SELECT [Username],[UserRole]
-	from [dbo].[User]
+	from [dbo].[CollabileUser]
 RETURN 0
 End
 

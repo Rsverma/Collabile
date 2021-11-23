@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[spTask_Delete]
-	@Id int
+	@Id uniqueidentifier
 AS
 	
 	Delete FROM [Task] Where Id=@Id

@@ -8,7 +8,6 @@
     [LastName] NVARCHAR(30) NOT NULL,
     EmailConfirmed BIT NOT NULL default 1,
     PhoneNumber VARCHAR(15) NULL,
-    UserRole VARCHAR(15) NOT NULL default 'Basic',
     CreatedBy UNIQUEIDENTIFIER NOT NULL,
     AccessFailedCount TINYINT NOT NULL default 0,
     [CreatedOn] DATETIME2 NOT NULL default getutcdate(),
@@ -16,5 +15,7 @@
     [DeletedOn] DATETIME2 NULL,
     LastModifiedBy UNIQUEIDENTIFIER NOT NULL,
     LastModifiedOn DATETIME2 NOT NULL default getutcdate(),
-    PhoneNumberConfirmed BIT NOT NULL default 0
+    PhoneNumberConfirmed BIT NOT NULL default 0,
+    UserRole VARCHAR(15) NOT NULL default 'Basic',
+    Notes NVARCHAR(MAX)  NOT NULL default ''
 )

@@ -2,4 +2,4 @@
 	@Username NVARCHAR(50)
 AS
 	--Delete FROM [Expense] Where UserId = @Id
-	Delete FROM [User] Where Username = @Username
+	Delete FROM [CollabileUser] Where Username = @Username

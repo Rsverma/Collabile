@@ -4,9 +4,9 @@
         @UserRole NVARCHAR(10)
 AS
 BEGIN
-	IF NOT(EXISTS(SELECT * FROM [User] WHERE Username = @Username))
+	IF NOT(EXISTS(SELECT * FROM [CollabileUser] WHERE Username = @Username))
     BEGIN
-        INSERT INTO [User] (Username,[Password],[UserRole])
+        INSERT INTO [CollabileUser] (Username,[PasswordHash],[UserRole])
                     Values (@Username, @Password, @UserRole)
     END
 END

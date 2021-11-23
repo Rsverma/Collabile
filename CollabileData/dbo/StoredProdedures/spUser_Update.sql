@@ -5,11 +5,11 @@
 
 AS
 	IF @Password IS NOT NULL AND @Password <>''
-		Update [User]
-		SET [Password]=@Password
+		Update [CollabileUser]
+		SET [PasswordHash]=@Password
 		WHERE Username=@Username
 
-	Update [User]
+	Update [CollabileUser]
 	SET [UserRole]=@UserRole
 	WHERE Username=@Username
 Return 0
