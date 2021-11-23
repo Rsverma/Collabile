@@ -9,9 +9,23 @@ using System.Data;
 
 namespace Collabile.DataAccess.Stores
 {
-    public class UserStore : IUserStore<CollabileUser>, IUserEmailStore<CollabileUser>, IUserPasswordStore<CollabileUser>, IUserClaimStore<CollabileUser>
+    public class UserStore : IUserStore<CollabileUser>, IUserEmailStore<CollabileUser>, IUserPasswordStore<CollabileUser>,
+        IUserClaimStore<CollabileUser>, IQueryableUserStore<CollabileUser>
     {
         private readonly string _connectionString;
+
+        public IQueryable<CollabileUser> Users
+        {
+            get
+            {
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    return connection.Query<CollabileUser>($@"SELECT * FROM [CollabileUser]
+                WHERE [IsDeleted] = 0").AsQueryable();
+                }
+            }
+        }
 
         public UserStore(IConfiguration configuration)
         {

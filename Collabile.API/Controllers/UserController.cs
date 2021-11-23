@@ -27,7 +27,7 @@ namespace Collabile.Api.Controllers
         /// Get User Details
         /// </summary>
         /// <returns>Status 200 OK</returns>
-        [Authorize(Policy = Permissions.Users.View)]
+        [Authorize(Roles = RoleConstants.AdministratorRole)]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -66,7 +66,7 @@ namespace Collabile.Api.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns>Status 200 OK</returns>
-        [Authorize(Policy = Permissions.Users.Edit)]
+        [Authorize(Roles = RoleConstants.AdministratorRole)]
         [HttpPut("roles/{id}")]
         public async Task<IActionResult> UpdateRolesAsync(UpdateUserRolesRequest request)
         {
@@ -78,7 +78,6 @@ namespace Collabile.Api.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns>Status 200 OK</returns>
-        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> RegisterAsync(RegisterRequest request)
         {
@@ -140,7 +139,7 @@ namespace Collabile.Api.Controllers
         /// </summary>
         /// <param name="searchString"></param>
         /// <returns>Status 200 OK</returns>
-        [Authorize(Policy = Permissions.Users.Export)]
+        [Authorize(Roles = RoleConstants.AdministratorRole)]
         [HttpGet("export")]
         public async Task<IActionResult> Export(string searchString = "")
         {

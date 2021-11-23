@@ -14,6 +14,6 @@ namespace Collabile.Api.Services
         }
 
         public string UserId { get; }
-        public List<KeyValuePair<string, string>> Claims { get; set; }
+        public List<KeyValuePair<string, string>> Claims { get; }
     }
 }

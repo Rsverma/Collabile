@@ -32,25 +32,30 @@ namespace Collabile.Api.Services
         //private readonly IMailService _mailService;
         private readonly IExcelService _excelService;
         private readonly ICurrentUserService _currentUserService;
-        private readonly IMapper _mapper;
 
-        public UserService(
-            UserManager<CollabileUser> userManager,
-            IMapper mapper,
-            RoleManager<CollabileRole> roleManager,
-            IExcelService excelService,
-            ICurrentUserService currentUserService)
+        public UserService(UserManager<CollabileUser> userManager, RoleManager<CollabileRole> roleManager,
+            IExcelService excelService, ICurrentUserService currentUserService)
         {
             _userManager = userManager;
-            _mapper = mapper;
             _excelService = excelService;
             _currentUserService = currentUserService;
         }
 
         public async Task<Result<List<UserResponse>>> GetAllAsync()
         {
+            var claims = _currentUserService.Claims;
             var users = _userManager.Users.ToList();
-            var result = _mapper.Map<List<UserResponse>>(users);
+            var result = users.Select(u => new UserResponse
+            {
+                Id = u.Id,
+                Email = u.Email,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                UserName = u.UserName,
+                PhoneNumber = u.PhoneNumber,
+                IsActive = u.IsActive,
+                EmailConfirmed = u.EmailConfirmed,
+            }).ToList();
             return await Result<List<UserResponse>>.SuccessAsync(result);
         }
 
@@ -61,17 +66,6 @@ namespace Collabile.Api.Services
             {
                 return await Result.FailAsync(string.Format("Username {0} is already taken.", request.UserName));
             }
-            var user = new CollabileUser
-            {
-                Email = request.Email,
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                UserName = request.UserName,
-                PhoneNumber = request.PhoneNumber,
-                IsActive = request.ActivateUser,
-                EmailConfirmed = request.AutoConfirmEmail
-            };
-
             if (!string.IsNullOrWhiteSpace(request.PhoneNumber))
             {
                 var userWithSamePhoneNumber = _userManager.Users.FirstOrDefault(x => x.PhoneNumber == request.PhoneNumber);
@@ -84,6 +78,19 @@ namespace Collabile.Api.Services
             var userWithSameEmail = await _userManager.FindByEmailAsync(request.Email);
             if (userWithSameEmail == null)
             {
+                string userId = Guid.NewGuid().ToString();
+                var user = new CollabileUser
+                {
+                    Id = userId,
+                    Email = request.Email,
+                    FirstName = request.FirstName,
+                    LastName = request.LastName,
+                    UserName = request.UserName,
+                    PhoneNumber = request.PhoneNumber,
+                    IsActive = request.ActivateUser,
+                    EmailConfirmed = request.AutoConfirmEmail
+                };
+
                 var result = await _userManager.CreateAsync(user, request.Password);
                 if (result.Succeeded)
                 {

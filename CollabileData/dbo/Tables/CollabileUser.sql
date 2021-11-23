@@ -12,6 +12,7 @@
     AccessFailedCount TINYINT NOT NULL default 0,
     [CreatedOn] DATETIME2 NOT NULL default getutcdate(),
     IsDeleted BIT NOT NULL default 0,
+    IsActive BIT NOT NULL default 1,
     [DeletedOn] DATETIME2 NULL,
     LastModifiedBy VARCHAR(36) NOT NULL,
     LastModifiedOn DATETIME2 NOT NULL default getutcdate(),

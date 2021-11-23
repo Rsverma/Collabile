@@ -31,7 +31,7 @@
 
     async Task Submit()
     {
-        await HubConnection.SendAsync(ApplicationConstants.SignalR.OnDisconnect, CurrentUserId);
+        //await HubConnection.SendAsync(ApplicationConstants.SignalR.OnDisconnect, CurrentUserId);
         await _authenticationManager.Logout();
         _navigationManager.NavigateTo("/login");
         MudDialog.Close(DialogResult.Ok(true));
