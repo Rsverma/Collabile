@@ -29,6 +29,7 @@ using FluentValidation.AspNetCore;
 using Collabile.DataAccess.Models.Identity;
 using Collabile.DataAccess.Stores;
 using Collabile.Shared.Models;
+using Collabile.DataAccess.Repositories;
 
 namespace Collabile.Api.Extensions
 {
@@ -127,6 +128,7 @@ namespace Collabile.Api.Extensions
         internal static IServiceCollection AddIdentity(this IServiceCollection services)
         {
             services.AddTransient<IUserStore<CollabileUser>, UserStore>();
+            services.AddTransient<IRoleStore<string>, RoleStore>();
             services
                 .AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>()
                 .AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>()
@@ -253,9 +255,10 @@ namespace Collabile.Api.Extensions
 
         internal static IServiceCollection AddRepositories(this IServiceCollection services)
         {
-            return services;
+            return services
                 //.AddTransient(typeof(IRepositoryAsync<,>), typeof(RepositoryAsync<,>))
-                //.AddTransient<IProductRepository, ProductRepository>()
+                .AddTransient<IProjectRepository, ProjectRepository>()
+                .AddTransient<IReleaseRepository, ReleaseRepository>();
                 //.AddTransient<IBrandRepository, BrandRepository>()
                 //.AddTransient<IDocumentRepository, DocumentRepository>()
                 //.AddTransient<IDocumentTypeRepository, DocumentTypeRepository>()
