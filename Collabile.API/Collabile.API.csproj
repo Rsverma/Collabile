@@ -35,4 +35,8 @@
     <ProjectReference Include="..\Collabile.Shared\Collabile.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>
