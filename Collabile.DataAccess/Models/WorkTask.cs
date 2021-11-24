@@ -1,4 +1,5 @@
 ﻿using Collabile.Shared.Enums;
+using Collabile.Shared.Helper;
 using Collabile.Shared.Models;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace Collabile.DataAccess.Models
 
         public TaskState State { get; set; }
 
-        public TaskSummary ParentStory { get; set; }
+        public ItemSummary ParentStory { get; set; }
 
         public decimal EstimatedEffort { get; set; }
 

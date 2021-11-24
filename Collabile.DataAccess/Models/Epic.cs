@@ -1,6 +1,5 @@
 ﻿using Collabile.Shared.Enums;
-using Collabile.Shared.Models;
-using System.Collections.Generic;
+using Collabile.Shared.Helper;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -33,7 +32,7 @@ namespace Collabile.DataAccess.Models
 
         public List<string> Tags{ get; set; }
 
-        public List<TaskSummary> Features { get; set; }
+        public List<ItemSummary> Features { get; set; }
 
     }
 }

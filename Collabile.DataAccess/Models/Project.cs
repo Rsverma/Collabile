@@ -1,6 +1,4 @@
-﻿using Collabile.Shared.Models;
-using System;
-using System.Collections.Generic;
+﻿using Collabile.Shared.Helper;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -29,6 +27,6 @@ namespace Collabile.DataAccess.Models
 
         public List<string> ProjectShareholders { get; set; }
 
-        public List<Release> Releases { get; set; }
+        public List<ReleaseSummary> Releases { get; set; }
     }
 }

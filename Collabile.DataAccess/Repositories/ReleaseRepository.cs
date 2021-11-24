@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Collabile.DataAccess.Repositories
 {
-    public class ProjectRepository : IProjectRepository
+    public class ReleaseRepository : IReleaseRepository
     {
-        public string Add(Project project)
+        public string Add(Release entity)
         {
             throw new NotImplementedException();
         }
@@ -20,17 +20,17 @@ namespace Collabile.DataAccess.Repositories
             throw new NotImplementedException();
         }
 
-        public List<ProjectSummary> FetchAll(string filter)
+        public List<ReleaseSummary> FetchAll(string filter)
         {
             throw new NotImplementedException();
         }
 
-        public Project FetchById(string Id)
+        public Release FetchById(string Id)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Project project)
+        public void Update(Release entity)
         {
             throw new NotImplementedException();
         }

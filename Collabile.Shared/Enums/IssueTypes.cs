@@ -1,5 +1,12 @@
 ﻿namespace Collabile.Shared.Enums
 {
+    public enum IssueType
+    {
+        Epic,
+        Feature,
+        Story,
+        Task
+    }
     public enum FeatureType
     {
         Improvement,
@@ -20,7 +27,7 @@
         Implmentation,
         Testing,
         CodeReview,
-        QABug
+        BugFix
     }
 
 }

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Collabile.DataAccess.Repositories
 {
-    public interface IRepository<TEntity> where TEntity : class
+    public interface IRepository<TEntity,Summary> where TEntity : class 
     {
-        List<TEntity> FetchAll();
+        List<Summary> FetchAll(string filter);
         TEntity FetchById(string Id);
-        void Add(TEntity entity);
+        string Add(TEntity entity);
         void Update(TEntity entity);
         void Delete(string Id);
     }

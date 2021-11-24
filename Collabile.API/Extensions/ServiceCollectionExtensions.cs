@@ -155,9 +155,8 @@ namespace Collabile.Api.Extensions
         internal static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddTransient<ITokenService, IdentityService>();
-            services.AddTransient<IAccountService, AccountService>();
+            services.AddTransient<IProjectService, ProjectService>();
             services.AddTransient<IUserService, UserService>();
-            services.AddTransient<IChatService, ChatService>();
             services.AddTransient<IUploadService, UploadService>();
             services.AddTransient<IAuditService, AuditService>();
             services.AddScoped<IExcelService, ExcelService>();

@@ -3,7 +3,7 @@ using Collabile.Shared.Helper;
 
 namespace Collabile.DataAccess.Repositories
 {
-    public interface IProjectRepository : IRepository<Project, ProjectSummary>
+    public interface IReleaseRepository : IRepository<Release, ReleaseSummary>
     {
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Collabile.Shared.Enums;
+using Collabile.Shared.Helper;
 using Collabile.Shared.Models;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace Collabile.DataAccess.Models
         public StoryType Type { get; set; }
 
         public StoryState State { get; set; }
-        public TaskSummary ParentFeature { get; set; }
+        public ItemSummary ParentFeature { get; set; }
         public Sprint Sprint { get; set; }
         public ReleaseSummary Release { get; set; }
         public int Priority { get; set; }
@@ -33,7 +34,7 @@ namespace Collabile.DataAccess.Models
         public string Assignee { get; set; }
         public string Reporter { get; set; }
 
-        public List<TaskSummary> RelatedStories { get; set; }
+        public List<ItemSummary> RelatedStories { get; set; }
 
         public List<Comment> Comments { get; set; }
 
@@ -41,6 +42,6 @@ namespace Collabile.DataAccess.Models
 
         public List<string> Tags { get; set; }
 
-        public List<TaskSummary> Tasks { get; set; }
+        public List<ItemSummary> Tasks { get; set; }
     }
 }
