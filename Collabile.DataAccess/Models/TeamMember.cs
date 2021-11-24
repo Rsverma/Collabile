@@ -1,7 +1,7 @@
 ﻿using Collabile.Shared.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Collabile.Api.Models
+namespace Collabile.DataAccess.Models
 {
     [Table("TeamMember")]
     public class TeamMember

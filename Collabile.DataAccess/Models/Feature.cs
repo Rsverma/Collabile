@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Collabile.Shared.Enums;
 using Collabile.Shared.Models;
 
-namespace Collabile.Api.Models
+namespace Collabile.DataAccess.Models
 {
     [Table("Feature")]
     public class Feature

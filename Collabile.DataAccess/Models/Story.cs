@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Collabile.Api.Models
+namespace Collabile.DataAccess.Models
 {
     [Table("Story")]
     public class Story

@@ -1,5 +1,5 @@
 ﻿using Collabile.Api.DataAccess;
-using Collabile.Api.Models;
+using Collabile.DataAccess.Models;
 using Collabile.Shared.Models;
 using System.Collections.Generic;
 

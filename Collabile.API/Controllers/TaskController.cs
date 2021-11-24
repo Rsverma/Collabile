@@ -1,4 +1,4 @@
-﻿using Collabile.Api.Models;
+﻿using Collabile.DataAccess.Models;
 using Collabile.Api.Services;
 using Collabile.Shared.Constants;
 using Collabile.Shared.Models;

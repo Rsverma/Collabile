@@ -1,9 +1,6 @@
 using Collabile.Api.DataAccess;
 using Collabile.Api.Extensions;
 using Collabile.Api.Filters;
-using Collabile.Api.Helpers;
-using Collabile.Api.Models;
-using Collabile.Api.Services;
 using Hangfire;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;

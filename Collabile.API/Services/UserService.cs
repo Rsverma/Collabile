@@ -1,7 +1,4 @@
-﻿using Collabile.Api.DataAccess;
-using Collabile.Api.Helpers;
-using Collabile.Api.Models;
-using Collabile.Shared.Models;
+﻿using Collabile.Shared.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -33,7 +30,7 @@ namespace Collabile.Api.Services
         private readonly IExcelService _excelService;
         private readonly ICurrentUserService _currentUserService;
 
-        public UserService(UserManager<CollabileUser> userManager, RoleManager<CollabileRole> roleManager,
+        public UserService(UserManager<CollabileUser> userManager,
             IExcelService excelService, ICurrentUserService currentUserService)
         {
             _userManager = userManager;

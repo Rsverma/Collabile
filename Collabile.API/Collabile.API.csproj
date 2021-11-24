@@ -31,12 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Collabile.Api.Library\Collabile.DataAccess.csproj" />
+    <ProjectReference Include="..\Collabile.DataAccess\Collabile.DataAccess.csproj" />
     <ProjectReference Include="..\Collabile.Shared\Collabile.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

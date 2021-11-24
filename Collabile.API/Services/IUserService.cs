@@ -1,5 +1,4 @@
-﻿using Collabile.Api.Models;
-using Collabile.Shared.Helper;
+﻿using Collabile.Shared.Helper;
 using Collabile.Shared.Interfaces;
 using Collabile.Shared.Models;
 using System.Collections.Generic;

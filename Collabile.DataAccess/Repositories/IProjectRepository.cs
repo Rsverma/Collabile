@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Collabile.DataAccess.Models;
 
 namespace Collabile.DataAccess.Repositories
 {
-    public interface IProjectRepository<TEntity> : IRepository<TEntity> where TEntity : class
+    public interface IProjectRepository<TEntity> : IRepository<TEntity> where TEntity : Project
     {
     }
 }

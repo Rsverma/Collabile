@@ -1,6 +1,5 @@
 ﻿using Collabile.Api.DataAccess;
 using Collabile.Api.Helpers;
-using Collabile.Api.Models;
 using Collabile.Api.Permission;
 using Collabile.Api.Services;
 using Collabile.Shared.Constants;
@@ -128,11 +127,10 @@ namespace Collabile.Api.Extensions
         internal static IServiceCollection AddIdentity(this IServiceCollection services)
         {
             services.AddTransient<IUserStore<CollabileUser>, UserStore>();
-            services.AddTransient<IRoleStore<CollabileRole>, DummyRoleStore>();
             services
                 .AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>()
                 .AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>()
-                .AddIdentity<CollabileUser, CollabileRole>(options =>
+                .AddIdentity<CollabileUser, string>(options =>
                 {
                     options.Password.RequiredLength = 6;
                     options.Password.RequireDigit = false;
@@ -156,9 +154,7 @@ namespace Collabile.Api.Extensions
 
         internal static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            services.AddTransient<IRoleClaimService, RoleClaimService>();
             services.AddTransient<ITokenService, IdentityService>();
-            services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IChatService, ChatService>();
