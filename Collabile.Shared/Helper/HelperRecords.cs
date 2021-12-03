@@ -8,5 +8,5 @@ namespace Collabile.Shared.Helper
 
     public record ReleaseSummary(int Id, int Index, string Name);
 
-    public record ItemSummary(string Id, string Title);
+    public record ItemSummary(string Id, string Title, ItemType ItemType);
 }

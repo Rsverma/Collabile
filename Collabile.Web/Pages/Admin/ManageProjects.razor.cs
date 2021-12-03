@@ -4,43 +4,36 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.JSInterop;
 using Collabile.Shared.Models;
 using Collabile.Shared.Constants;
+using Collabile.Shared.Helper;
 
 namespace Collabile.Web.Pages.Admin
 {
     public partial class ManageProjects
     {
-        private List<UserResponse> _userList = new();
+        private List<ProjectSummary> _projectsList = new();
         private UserResponse _user = new();
         private string _searchString = "";
         private bool _dense = false;
         private bool _striped = true;
         private bool _bordered = false;
 
-        private ClaimsPrincipal _currentUser;
-        private bool _canCreateUsers;
-        private bool _canSearchUsers;
-        private bool _canExportUsers;
-        private bool _canViewRoles;
+        private bool _isAdmin;
         private bool _loaded;
 
         protected override async Task OnInitializedAsync()
         {
-            _currentUser = await _authenticationManager.CurrentUser();
-            _canCreateUsers = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Create)).Succeeded;
-            _canSearchUsers = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Search)).Succeeded;
-            _canExportUsers = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Export)).Succeeded;
-            _canViewRoles = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Roles.View)).Succeeded;
+            _isAdmin = (await _authenticationManager.CurrentUser()).FindFirst(ClaimTypes.Role).Value.Equals(RoleConstants.AdministratorRole);
 
-            await GetUsersAsync();
+            await GetProjectsAsync();
             _loaded = true;
         }
 
-        private async Task GetUsersAsync()
+        private async Task GetProjectsAsync()
         {
             var response = await _userManager.GetAllAsync();
             if (response.Succeeded)
             {
-                _userList = response.Data.ToList();
+                _projectsList = response.Data.ToList();
             }
             else
             {
@@ -99,7 +92,7 @@ namespace Collabile.Web.Pages.Admin
             var result = await dialog.Result;
             if (!result.Cancelled)
             {
-                await GetUsersAsync();
+                await GetProjectsAsync();
             }
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace Collabile.Shared.Enums
 {
-    public enum IssueType
+    public enum ItemType
     {
         Epic,
         Feature,
