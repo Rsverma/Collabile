@@ -1,5 +1,6 @@
 ﻿using Collabile.Api.Services;
 using Collabile.Shared.Models;
+using Collabile.Shared.Models.Requests;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

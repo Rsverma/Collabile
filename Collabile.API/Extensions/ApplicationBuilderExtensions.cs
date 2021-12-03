@@ -48,7 +48,7 @@ namespace Collabile.Api.Extensions
 
         internal static IApplicationBuilder UseRequestLocalizationByCulture(this IApplicationBuilder app)
         {
-            var supportedCultures = LocalizationConstants.SupportedLanguages.Select(l => new CultureInfo(l.Code)).ToArray();
+            CultureInfo[] supportedCultures = { new CultureInfo("en-US") };
             app.UseRequestLocalization(options =>
             {
                 options.SupportedUICultures = supportedCultures;

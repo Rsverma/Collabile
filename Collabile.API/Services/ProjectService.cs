@@ -1,6 +1,7 @@
 ﻿using Collabile.DataAccess.Models;
 using Collabile.DataAccess.Repositories;
 using Collabile.Shared.Helper;
+using Collabile.Shared.Models;
 using System.Collections.Generic;
 
 namespace Collabile.Api.Services

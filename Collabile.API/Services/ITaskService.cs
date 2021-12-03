@@ -1,4 +1,5 @@
 ﻿using Collabile.DataAccess.Models;
+using Collabile.Shared.Models.Items;
 using System.Collections.Generic;
 
 namespace Collabile.Api.Services

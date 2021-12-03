@@ -1,4 +1,3 @@
-using Collabile.Api.DataAccess;
 using Collabile.Api.Extensions;
 using Collabile.Api.Filters;
 using Hangfire;

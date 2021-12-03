@@ -1,6 +1,7 @@
 ﻿using Collabile.Shared.Constants;
 using Collabile.Shared.Interfaces;
 using Collabile.Shared.Models;
+using Collabile.Shared.Models.Chat;
 using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 

@@ -12,32 +12,24 @@
 }
 else
 {
-    <MudTable Hover="true" Elevation="25" Items="_projectsList" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Filter="new Func<UserResponse, bool>(Search)" @bind-user="_user">
+    <MudTable Hover="true" Elevation="25" Items="_projectsList" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Filter="new Func<ProjectSummary, bool>(Search)" @bind-user="_user">
         <ToolBarContent>
             <div class="justify-center mud-text-align-center">
                 @if (_isAdmin)
                 {
                     <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary" OnClick="(() => InvokeModal())" StartIcon="@Icons.Material.Filled.Add" IconColor="Color.Surface">Register New User</MudButton>
                     <MudButton DisableElevation Variant="Variant.Filled" OnClick="GetProjectsAsync" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Secondary">Reload</MudButton>
-                    @if (_canExportUsers)
-                    {
-                        <MudButton DisableElevation Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface" Style="margin-left: 5px;">Export</MudButton>
-                    }
-                }
-                else
-                {
-                    <MudButton DisableElevation Variant="Variant.Filled" OnClick="GetProjectsAsync" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Secondary">Reload</MudButton>
-                    @if (_canExportUsers)
-                    {
-                        <MudButton DisableElevation Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface" Style="margin-left: 5px;">Export</MudButton>
-                    }
-                }
+                    <MudButton DisableElevation Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface" Style="margin-left: 5px;">Export</MudButton>
+                }   
+            else
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" OnClick="GetProjectsAsync" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Secondary">Reload</MudButton>
+                <MudButton DisableElevation Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface" Style="margin-left: 5px;">Export</MudButton>
+            }
             </div>
             <MudSpacer />
-            @if (_canSearchUsers)
-            {
-                <MudTextField @bind-Value="_searchString" Immediate="true" FullWidth=false Placeholder="Search For Users" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
-            }
+            <MudTextField @bind-Value="_searchString" Immediate="true" FullWidth=false Placeholder="Search For Users" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
+            
         </ToolBarContent>
         <HeaderContent>
             <MudTh><MudTableSortLabel SortBy="new Func<UserResponse, object>(x => x.FirstName)">First Name</MudTableSortLabel></MudTh>
@@ -70,10 +62,9 @@ else
             <MudTd DataLabel="Actions" Style="text-align:right">
                 <MudMenu Label="Actions" Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary" Direction="Direction.Left" OffsetX="true">
                     <MudMenuItem OnClick="(()=>ViewProfile(context.Id))">View Profile</MudMenuItem>
-                    @if (_canViewRoles)
-                        {
+                    
                         <MudMenuItem OnClick="(()=>ManageRoles(context.Id, context.Email))">Manage Roles</MudMenuItem>
-                        }
+                        
                 </MudMenu>
             </MudTd>
         </RowTemplate>

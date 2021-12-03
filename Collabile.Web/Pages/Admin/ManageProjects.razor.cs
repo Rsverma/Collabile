@@ -5,6 +5,7 @@ using Microsoft.JSInterop;
 using Collabile.Shared.Models;
 using Collabile.Shared.Constants;
 using Collabile.Shared.Helper;
+using Collabile.Shared.Models.Responses;
 
 namespace Collabile.Web.Pages.Admin
 {
@@ -33,7 +34,7 @@ namespace Collabile.Web.Pages.Admin
             var response = await _userManager.GetAllAsync();
             if (response.Succeeded)
             {
-                _projectsList = response.Data.ToList();
+                _projectsList = new List<ProjectSummary>();//response.Data.ToList();
             }
             else
             {

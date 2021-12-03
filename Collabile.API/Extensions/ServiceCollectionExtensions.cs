@@ -1,5 +1,4 @@
-﻿using Collabile.Api.DataAccess;
-using Collabile.Api.Helpers;
+﻿using Collabile.Api.Helpers;
 using Collabile.Api.Permission;
 using Collabile.Api.Services;
 using Collabile.Shared.Constants;
@@ -162,8 +161,7 @@ namespace Collabile.Api.Extensions
             services.AddTransient<IUploadService, UploadService>();
             services.AddTransient<IAuditService, AuditService>();
             services.AddScoped<IExcelService, ExcelService>();
-            services.AddSingleton<ITaskService, TaskService>()
-                    .AddSingleton<ISqlDataAccess, SqlDataAccess>();
+            services.AddSingleton<ITaskService, TaskService>();
             return services;
         }
 

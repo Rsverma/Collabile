@@ -4,6 +4,7 @@ using MudBlazor;
 using Blazored.FluentValidation;
 using Collabile.Shared.Models;
 using Collabile.Web.Extensions;
+using Collabile.Shared.Models.Requests;
 
 namespace Collabile.Web.Pages.Personal
 {

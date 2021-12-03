@@ -4,7 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Dapper;
 using System.Data.SqlClient;
 using System.Security.Claims;
-using Collabile.Api.DataAccess;
 using System.Data;
 
 namespace Collabile.DataAccess.Stores

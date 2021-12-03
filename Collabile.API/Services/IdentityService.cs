@@ -2,6 +2,8 @@
 using Collabile.DataAccess.Models.Identity;
 using Collabile.Shared.Helper;
 using Collabile.Shared.Models;
+using Collabile.Shared.Models.Requests;
+using Collabile.Shared.Models.Responses;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

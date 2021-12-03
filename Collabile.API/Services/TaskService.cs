@@ -1,38 +1,30 @@
-﻿using Collabile.Api.DataAccess;
-using Collabile.DataAccess.Models;
+﻿using Collabile.DataAccess.Models;
 using Collabile.Shared.Models;
+using Collabile.Shared.Models.Items;
 using System.Collections.Generic;
 
 namespace Collabile.Api.Services
 {
     public class TaskService : ITaskService
     {
-        private readonly ISqlDataAccess _sql;
-
-        public TaskService(ISqlDataAccess sql)
-        {
-            _sql = sql;
-        }
-
         public void DeleteTask(int taskId, int userId)
         {
-            _ = _sql.SaveDataAsync("dbo.spTask_Delete", new { Id = taskId, userId });
+            throw new System.NotImplementedException();
         }
 
         public List<WorkTask> GetAllTasks(int userId)
         {
-            var tasks = _sql.LoadData<WorkTask, dynamic>("dbo.spTask_GetAll", new { userId });
-            return tasks;
+            throw new System.NotImplementedException();
         }
 
         public int SaveTask(WorkTask task)
         {
-            return _sql.SaveDataScalar("dbo.spTask_Insert", task);
+            throw new System.NotImplementedException();
         }
 
         public void UpdateTask(WorkTask task)
         {
-            _ = _sql.SaveDataAsync("dbo.spTask_Update", task);
+            throw new System.NotImplementedException();
         }
     }
 }

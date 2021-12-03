@@ -1,4 +1,5 @@
 ﻿using Collabile.Shared.Models;
+using Collabile.Shared.Models.Chat;
 using Microsoft.AspNetCore.Identity;
 
 namespace Collabile.DataAccess.Models.Identity
