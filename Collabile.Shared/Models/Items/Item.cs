@@ -18,10 +18,10 @@ namespace Collabile.Shared.Models.Items
 
         [Required]
         public ItemType ItemType { get; set; }
-        public int? Assignee { get; set; }
+        public string? Assignee { get; set; }
 
         [Required]
-        public int Reporter { get; set; }
+        public string Reporter { get; set; }
 
         public List<Comment> Comments { get; set; }
 

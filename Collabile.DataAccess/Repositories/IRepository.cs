@@ -8,10 +8,10 @@ namespace Collabile.DataAccess.Repositories
 {
     public interface IRepository<TEntity,Summary> where TEntity : class 
     {
-        List<Summary> FetchAll(string filter);
-        TEntity FetchById(string Id);
-        string Add(TEntity entity);
-        void Update(TEntity entity);
-        void Delete(string Id);
+        Task<List<Summary>> FetchAll(string filter);
+        Task<TEntity> FetchById(string Id);
+        Task<string> Add(TEntity entity);
+        Task Update(TEntity entity);
+        Task Delete(string Id);
     }
 }

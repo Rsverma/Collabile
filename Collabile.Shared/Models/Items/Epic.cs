@@ -7,17 +7,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Collabile.Shared.Models.Items
 {
     [Table("Epic")]
-    public class Epic
+    public class Epic : Item
     {
-        [Key]
-        public int Id { get; set; }
-
-        [Required][StringLength(500)]
-        public string Title { get; set; }
-
-        [Required]
-        public string Description { get; set; }
-
+        public Epic()
+        {
+            ItemType = ItemType.Epic;
+        }
         public EpicState State { get; set; }
 
         public int Priority { get; set; }
@@ -26,11 +21,6 @@ namespace Collabile.Shared.Models.Items
         public string ProjectArea { get; set; }
 
         public string Project { get; set; }
-
-        public List<Comment> Comments { get; set; }
-
-        public List<Attachment> Attachments { get; set; }
-
         public List<string> Tags{ get; set; }
 
         public List<ItemSummary> Features { get; set; }

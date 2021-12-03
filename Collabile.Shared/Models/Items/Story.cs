@@ -9,17 +9,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Collabile.Shared.Models.Items
 {
     [Table("Story")]
-    public class Story
+    public class Story : Item
     {
-        [Key]
-        public int Id { get; set; }
-
-        [Required]
-        [StringLength(500)]
-        public string Title { get; set; }
-
-        [Required]
-        public string Description { get; set; }
+        public Story()
+        {
+            ItemType = ItemType.Story;
+        }
 
         public StoryType Type { get; set; }
 
@@ -31,14 +26,8 @@ namespace Collabile.Shared.Models.Items
         [Required]
         public string AcceptanceCriteria { get; set; }
         public DateTime CreateDate { get; set; }
-        public string Assignee { get; set; }
-        public string Reporter { get; set; }
 
         public List<ItemSummary> RelatedStories { get; set; }
-
-        public List<Comment> Comments { get; set; }
-
-        public List<Attachment> Attachments { get; set; }
 
         public List<string> Tags { get; set; }
 

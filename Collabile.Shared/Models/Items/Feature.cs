@@ -9,17 +9,12 @@ using Collabile.Shared.Models;
 namespace Collabile.Shared.Models.Items
 {
     [Table("Feature")]
-    public class Feature
+    public class Feature : Item
     {
-        [Key]
-        public int Id { get; set; }
-
-        [Required][StringLength(500)]
-        public string Title { get; set; }
-
-        [Required]
-        public string Description { get; set; }
-
+        public Feature()
+        {
+            ItemType = ItemType.Feature;
+        }
         public FeatureType Type { get; set; }
         public FeatureState State { get; set; }
         public ItemSummary ParentEpic { get; set; }
@@ -27,13 +22,8 @@ namespace Collabile.Shared.Models.Items
         public int Priority { get; set; }
         [Required][StringLength(20)]
         public string BusinessValue { get; set; }
-        public string Assignee { get; set; }
 
         public string Project { get; set; }
-
-        public List<Comment> Comments { get; set; }
-
-        public List<Attachment> Attachments { get; set; }
 
         public List<string> Tags { get; set; }
 

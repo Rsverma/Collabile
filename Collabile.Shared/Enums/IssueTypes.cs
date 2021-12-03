@@ -5,7 +5,7 @@
         Epic,
         Feature,
         Story,
-        Task
+        WorkTask
     }
     public enum FeatureType
     {

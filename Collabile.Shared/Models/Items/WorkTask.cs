@@ -9,6 +9,10 @@ namespace Collabile.Shared.Models.Items
     [Table("Task")]
     public class WorkTask: Item
     {
+        public WorkTask()
+        {
+            ItemType = ItemType.WorkTask;
+        }
         public TaskType Type { get; set; }
 
         public TaskState State { get; set; }
